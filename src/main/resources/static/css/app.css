@@ -1,0 +1,29 @@
+@charset "UTF-8";
+body {
+  background: #304d6d; }
+
+h1 {
+  color: #82a0bc; }
+
+.initials {
+  color: #a7cced;
+  font-size: 1.5em;
+  font-family: "Leckerli One", cursive; }
+
+.pop {
+  background: #FFDD59;
+  font-family: monospace; }
+
+.signin {
+  color: #a7cced; }
+
+#header {
+  border: solid 1px black;
+  padding: 40px; }
+
+.widget {
+  border-radius: 100%;
+  border: dashed 4px #333; }
+
+.dayview {
+  display: none; }
