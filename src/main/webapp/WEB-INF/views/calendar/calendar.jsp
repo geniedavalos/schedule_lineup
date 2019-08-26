@@ -151,6 +151,24 @@
     </table>
 </div>
 
+<div class="container">
+		<h1>Add someone to schedule</h1>
+		<form:form action="/schedule/addSchedule" method="POST" modelAttribute="schedule">
+			<form:select path="employee">
+				<c:forEach items="${allEmployees}" var="emp">
+					<form:option value="${emp.id}" label="${emp.firstName} ${emp.lastName}"/>
+				</c:forEach>
+			</form:select>
+			<form:label path="workDate"> Day of Work</form:label>
+			<form:input type="date" path="workDate"/>
+			<form:label path="startHour">Start time</form:label>
+			<form:input type="time" path="startHour"/>
+			<form:label path="endHour">End time</form:label>
+			<form:input type="time" path="endHour"/>
+			<button type="submit" class="btn btn-success">Submit</button>
+		</form:form>
+	</div>
+
 <div class="container request mt-2">
     <div class="shift-swap d-inline-block bg-light p-3 text-center">
         <h3>Shift Swap Request</h3>

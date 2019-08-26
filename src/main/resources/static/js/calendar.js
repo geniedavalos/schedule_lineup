@@ -66,6 +66,7 @@ function showCalendar(month, year) {
                 let cell = document.createElement("td");
                 let cellText = document.createTextNode(date);
                 cell.id = date;
+                cell.value = new Date(currentYear, currentMonth, date);
                 if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
                     cell.classList.add("text-danger");
                 } // color today's date
@@ -87,11 +88,13 @@ $(document).ready(function () {
     var singleDay = null;
     var previousDay = null;
     var id = null;
-
+    var dayVal;
+    
     //Function for getting date value
     $(document).on("click", "td", function () {
         singleDay = $(this);
-
+        selectedDate = singleDay[0]["value"];
+        
         if(id != null){
             $("#" + id).css("background-color", "white");
         }
@@ -101,6 +104,7 @@ $(document).ready(function () {
         $(".dayview").show();
         let day = $(this).attr("id");
         $(".show-date").html(day);
+        
     })
     $("h3.pop").click(function () {
         $(".dayview").hide();
