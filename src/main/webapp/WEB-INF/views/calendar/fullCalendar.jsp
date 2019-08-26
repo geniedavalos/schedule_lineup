@@ -15,6 +15,7 @@
 
     <script src='/fullcalendar/packages/core/main.js'></script>
     <script src='/fullcalendar/packages/daygrid/main.js'></script>
+    <script src='/fullcalendar/packages/interaction/main.js'></script>
     <script src='/fullcalendar/packages/timegrid/main.js'></script>
     <script src='/fullcalendar/packages/list/main.js'></script>
     
@@ -29,10 +30,14 @@
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
           },
-          defaultDate: '2019-08-12',
+          defaultDate: '2019-08-29',
           navLinks: true, // can click day/week names to navigate views
           businessHours: true, // display business hours
           editable: true,
+          selectable:true,
+          dateClick:function(info){
+        	console.log(info);  
+          },
           events: [
             {
               title: 'Business Lunch',

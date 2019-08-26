@@ -20,12 +20,10 @@ import com.codingdojo.lineup.validators.EmployeeValidator;
 public class AuthController {
 	private final EmployeeService empServ;
 	private final EmployeeValidator empValidator;
-	private final ScheduleService scheServ;
 	
-	public AuthController(EmployeeValidator empVal, EmployeeService empServ, ScheduleService scheduleService) {
+	public AuthController(EmployeeValidator empVal, EmployeeService empServ) {
 		empValidator = empVal;
 		this.empServ = empServ;
-		scheServ = scheduleService;
 		
 	}
 	
@@ -40,7 +38,7 @@ public class AuthController {
 	if(result.hasErrors()) {
 		return "testForm.jsp";
 	} else {
-		Employee emp = scheServ.registerEmployee(e);
+		Employee emp = empServ.registerEmployee(e);
 		session.setAttribute("emp_id", emp.getId());
 		return "redirect:/schedule";
 		}
