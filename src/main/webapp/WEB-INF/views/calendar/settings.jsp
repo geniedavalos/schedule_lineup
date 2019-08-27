@@ -23,10 +23,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
        <li class="nav-item active">
-          <a class="nav-link" href="#">Dashboard</a>
+          <a class="nav-link" href="/schedule/manager">Dashboard</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#">Sign Out</a>
+          <a class="nav-link" href="/logout">Sign Out</a>
         </li>
       </ul>
     </div>
@@ -52,14 +52,23 @@
 		<table class="table table-striped">
 				<thead>
 					<tr>
-						<th scope="col">Name</th>
+						<th scope="col">First Name</th>
+						<th scope="col">Last Name</th>
+						<th scope="col">Position</th>
 						<th scope="col">Access Level</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${allEmployees}" var="emp">
 						<tr>
-							<td><c:out value="${emp.firstName} ${emp.lastName}"/></td>
+							<td><c:out value="${emp.firstName} "/></td>
+							<td><c:out value="${emp.lastName} "/></td>
+							<td>
+						<c:choose>
+							<c:when test="${schedule.employee.accessLevel==9}">Manager</c:when>
+							<c:when test="${schedule.employee.accessLevel==1}">Employee</c:when>
+						</c:choose>
+						</td>
 							<td>
 								<form action="/schedule/${emp.id}/changeAccess" method="POST">
 									<select name="accessLvl">
@@ -82,7 +91,8 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th scope="col">Staff name</th>
+					<th scope="col">First Name</th>
+					<th scope="col">Last Name</th>
 					<th scope="col">Position</th>
 					<th scope="col">Action</th>
 				</tr>
@@ -90,7 +100,8 @@
 			<tbody>
 				<c:forEach items="${allEmployees}" var="emp">
 					<tr>
-						<td><c:out value="${emp.firstName} ${emp.lastName}"/></td>
+						<td><c:out value="${emp.firstName}"/></td>
+						<td><c:out value="${emp.lastName}"/></td>
 						<td>
 						<c:choose>
 							<c:when test="${schedule.employee.accessLevel==9}">Manager</c:when>
