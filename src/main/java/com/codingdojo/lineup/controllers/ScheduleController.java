@@ -1,6 +1,7 @@
 package com.codingdojo.lineup.controllers;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -22,16 +23,18 @@ import com.codingdojo.lineup.services.ScheduleService;
 @RequestMapping("/schedule")
 public class ScheduleController {
 	private final ScheduleService scheServ;
+	private Date selectedDate;
 	
 	public ScheduleController(ScheduleService scheduleService) {
 		scheServ = scheduleService;
 	}
 	
 	@RequestMapping("")
-	public String dashboard(Model model) {
+	public String dashboard(@ModelAttribute("schedule") Schedule s, Model model) {
+		model.addAttribute("schedule", s);
 		List<Schedule> schedules = scheServ.getSchedules();
 		model.addAttribute("schedules", schedules);
-		return "/testDashboard.jsp";
+		return "/calendar/fullCalendar.jsp";
 	}
 	
 	@RequestMapping("/addSchedule")
