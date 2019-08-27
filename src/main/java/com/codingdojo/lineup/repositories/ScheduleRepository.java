@@ -18,7 +18,4 @@ public interface ScheduleRepository extends CrudRepository<Schedule, Long>{
 	
 	@Query(value="SELECT * FROM schedules WHERE work_date >= ?1 AND work_date < ?2", nativeQuery=true)
 	List<Schedule> findByDate(LocalDate startDate, LocalDate endDate);
-	
-//	@Query(value="SELECT * from employees join schedules on schedules.employee_id = employees.id;", nativeQuery=true)
-//	List<Schedule> returnJson();
 } 
