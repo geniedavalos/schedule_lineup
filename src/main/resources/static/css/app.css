@@ -75,6 +75,11 @@ nav a, nav a:hover, .footer-item a, .footer-item a:hover {
   vertical-align: middle;
 }
 
+.social a:hover {
+  color: white;
+  text-decoration: none;
+}
+
 .fa-skype {
   background: #00aff0;
   color: white;
