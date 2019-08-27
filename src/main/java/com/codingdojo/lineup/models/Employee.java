@@ -44,7 +44,6 @@ public class Employee {
 	
 	private int accessLevel;
 	
-//	private List<String> positions;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(
@@ -61,6 +60,12 @@ public class Employee {
 		inverseJoinColumns = @JoinColumn(name="employee_id")
 			)
 	private List<Employee> employees;
+	
+	@OneToMany(mappedBy="sender", fetch=FetchType.LAZY)
+	private List<Request> sentRequests;
+	
+	@OneToMany(mappedBy="receiver", fetch=FetchType.LAZY)
+	private List<Request> requests;
 	
 	@Column(updatable=false)
     private Date createdAt;
@@ -80,6 +85,18 @@ public class Employee {
 	
 	public Employee() {
 		
+	}
+	public List<Request> getSentRequests() {
+		return sentRequests;
+	}
+	public void setSentRequests(List<Request> sentRequests) {
+		this.sentRequests = sentRequests;
+	}
+	public List<Request> getRequests() {
+		return requests;
+	}
+	public void setRequests(List<Request> requests) {
+		this.requests = requests;
 	}
 	public List<Employee> getManagers() {
 		return managers;
@@ -135,12 +152,6 @@ public class Employee {
 	public void setAccessLevel(int accessLevel) {
 		this.accessLevel = accessLevel;
 	}
-//	public List<String> getPositions() {
-//		return positions;
-//	}
-//	public void setPositions(List<String> positions) {
-//		this.positions = positions;
-//	}
 	public Date getCreatedAt() {
 		return createdAt;
 	}

@@ -3,7 +3,6 @@ package com.codingdojo.lineup.controllers;
 import java.util.Date;
 import java.util.List;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.codingdojo.lineup.models.Employee;
+import com.codingdojo.lineup.models.Request;
 import com.codingdojo.lineup.models.Schedule;
 import com.codingdojo.lineup.services.ScheduleService;
 
@@ -21,15 +21,15 @@ import com.codingdojo.lineup.services.ScheduleService;
 @RequestMapping("/schedule")
 public class ScheduleController {
 	private final ScheduleService scheServ;
-	private Date selectedDate;
 	
 	public ScheduleController(ScheduleService scheduleService) {
 		scheServ = scheduleService;
 	}
 	
 	@RequestMapping("")
-	public String dashboard(@ModelAttribute("schedule") Schedule s, Model model) {
+	public String dashboard(@ModelAttribute("schedule") Schedule s, @ModelAttribute("request")Request req, Model model) {
 		model.addAttribute("schedule", s);
+		model.addAttribute("request",req);
 		List<Schedule> schedules = scheServ.getSchedules();
 		model.addAttribute("schedules", schedules);
 		return "/calendar/calendar.jsp";
@@ -73,8 +73,17 @@ public class ScheduleController {
 	@RequestMapping(value="/{id}/changeAccess", method=RequestMethod.POST)
 	public String updateAccess(@PathVariable("id")Long id, @RequestParam("accessLvl") int accLvl) {
 		Employee e = scheServ.getEmp(id);
-		e.setAccessLevel(accLvl);
-		scheServ.registerEmployee(e);
+		if(accLvl == 9) {
+			e.setAccessLevel(accLvl);
+			e.getManagers().add(e);
+			scheServ.registerEmployee(e);
+		}
+		if(accLvl == 1) {
+			e.setAccessLevel(accLvl);
+			e.getEmployees().add(e);
+			scheServ.registerEmployee(e);
+		}
+
 		return "redirect:/schedule";
 	}
 	
@@ -111,16 +120,6 @@ public class ScheduleController {
 			return "redirect:/schedule/settings";
 		}
 	}
-//	@RequestMapping("/byDay")
-//	public String searchByDay(@RequestParam(name="daySearch", required=false ) String date, Model model) {
-//		System.out.println(date);
-//		LocalDate startDate = LocalDate.parse(date);
-//		LocalDate endDate = startDate.plusDays(1);
-//		List<Schedule> scheByDay = scheServ.getByDay(startDate, endDate);
-//		System.out.println(scheByDay);
-//		model.addAttribute("byDay", scheByDay);
-//		return "testByDay.jsp";
-//	}
 //	
 //	@RequestMapping("/swap")
 //	public String swapPage(@ModelAttribute("scheduleObj")Schedule s, Model model, HttpSession session) {
@@ -135,6 +134,23 @@ public class ScheduleController {
 //	public String swap(@ModelAttribute("scheduleObj") Schedule s, BindingResult result) {
 //		scheServ.get
 //	}
+	@RequestMapping(value="/requestOff", method=RequestMethod.POST)
+	public String requestOff(@ModelAttribute("request") Request req, BindingResult result) {
+		if(result.hasErrors()) {
+			System.out.println(result);
+			return "/calendar/calendar.jsp";
+		} else {
+			List<Employee> managers = scheServ.getManagers();
+			for(Employee manager: managers) {
+				Request newReq = req;
+				newReq.setReceiver(manager);
+				scheServ.sendRequest(newReq);
+			}
+			
+			return "redirect:/schedule";
+		}
+	}
+	
 	
 }
 

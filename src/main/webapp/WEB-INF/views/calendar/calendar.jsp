@@ -254,18 +254,23 @@
       <div class="col-5 container">
         <h4>Day Off Request</h4>
         <h5>Date</h5>
-        <input type="date"></input>
-        <h5>Type</h5>
-        <select>
-          <option>PTO</option>
-          <option>Sick</option>
-          <option>Others</option>
-        </select>
-        <h5>Description</h5>
-        <textarea></textarea>
-        <div class="center">
-          <a href="#" class="btn btn-primary">Submit</a>
-        </div>
+        <form:form action="/schedule/requestOff" method="post" modelAttribute="request">
+        	<form:hidden path="sender" value="${emp_id}"/>
+        	<form:label path="start">Start Date</form:label>
+        	<form:input type="date" path="start"/>
+        	<form:label path="end">End Date</form:label>
+        	<form:input type="date" path="end"/>
+		<form:label path="type">Type</form:label>
+        	<form:select path="type">
+        		<form:option value="paid" label="PTO"/>
+        		<form:option value="sick" label="Sick"/>
+        		<form:option value="pto" label="Others"/>
+        	</form:select>
+        	<form:label path="description">Description</form:label>
+        	<form:input type="textarea" path="description"/>
+        	<button type="submit" class="btn btn-primary">submit</button>
+        </form:form>
+        
       </div>
     </div>
   </section>

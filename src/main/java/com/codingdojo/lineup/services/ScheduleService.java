@@ -3,23 +3,26 @@ package com.codingdojo.lineup.services;
 import java.time.LocalDate;
 import java.util.List;
 
-
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.codingdojo.lineup.models.Employee;
+import com.codingdojo.lineup.models.Request;
 import com.codingdojo.lineup.models.Schedule;
 import com.codingdojo.lineup.repositories.EmployeeRepository;
+import com.codingdojo.lineup.repositories.RequestRepository;
 import com.codingdojo.lineup.repositories.ScheduleRepository;
 
 @Service
 public class ScheduleService {
 	private final ScheduleRepository scheRepo;
 	private final EmployeeRepository empRepo;
+	private final RequestRepository reqRepo;
 	
-	public ScheduleService(ScheduleRepository scheRepo, EmployeeRepository empRepo) {
+	public ScheduleService(ScheduleRepository scheRepo, EmployeeRepository empRepo, RequestRepository reqRepo) {
 		this.scheRepo = scheRepo;
 		this.empRepo = empRepo;
+		this.reqRepo = reqRepo;
 	}
 	
 	public Employee registerEmployee(Employee e) {
@@ -62,9 +65,13 @@ public class ScheduleService {
 	public List<Schedule> getByDay(LocalDate startDate, LocalDate endDate){
 		return scheRepo.findByDate(startDate, endDate);
 	}
-//	
-//	public List<Object> returnJson() {
-//		return scheRepo.returnJson();
-//	}
+	
+	public List<Employee> getManagers(){
+		return empRepo.findManagers();
+	}
+	
+	public Request sendRequest(Request r) {
+		return reqRepo.save(r);
+	}
 
 }
