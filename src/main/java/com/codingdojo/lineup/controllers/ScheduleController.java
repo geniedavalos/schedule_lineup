@@ -27,26 +27,26 @@ import com.codingdojo.lineup.services.ScheduleService;
 public class ScheduleController {
 	private final ScheduleService scheServ;
 	private Date selectedDate;
-	
+
 	public ScheduleController(ScheduleService scheduleService) {
 		scheServ = scheduleService;
 	}
-	
+
 	@RequestMapping("")
 	public String dashboard(@ModelAttribute("schedule") Schedule s, Model model) {
 		model.addAttribute("schedule", s);
 		model.addAttribute("schedules", scheServ.getSchedules());
 		return "/calendar/fullCalendar.jsp";
 	}
-	
+
 	@RequestMapping("/checks")
 	@ResponseBody
 	public String test(@RequestParam("searchDate") Date date, HttpServletRequest request, HttpServletResponse response, Model model) {
 		System.out.println(date);
 		return "/calendar/fullCalendar.jsp";
-		
+
 	}
-	
+
 	@RequestMapping("/addSchedule")
 	public String addForm(@ModelAttribute("schedule") Schedule s, Model model) {
 		List<Employee> employees = scheServ.getEmployees();
@@ -54,7 +54,7 @@ public class ScheduleController {
 		model.addAttribute("allEmployees", employees);
 		return "testAddSchedule.jsp";
 	}
-	
+
 	@RequestMapping(value="/addSchedule", method=RequestMethod.POST)
 	public String addSchedule(@ModelAttribute("schedule")Schedule s, BindingResult result) {
 		if(result.hasErrors()) {
@@ -65,7 +65,7 @@ public class ScheduleController {
 			return "redirect:/schedule";
 		}
 	}
-	
+
 	@RequestMapping("/settings")
 	public String settingsPage(@ModelAttribute("employees")Employee e, Model model) {
 		List<Employee> employees = scheServ.getEmployees();
@@ -73,7 +73,7 @@ public class ScheduleController {
 		model.addAttribute("allEmployees", employees);
 		return "settings.jsp";
 	}
-	
+
 	@RequestMapping(value="/{id}/changeAccess", method=RequestMethod.POST)
 	public String updateAccess(@PathVariable("id")Long id, @RequestParam("accessLvl") int accLvl) {
 		Employee e = scheServ.getEmp(id);
@@ -81,14 +81,14 @@ public class ScheduleController {
 		scheServ.registerEmployee(e);
 		return "redirect:/schedule";
 	}
-	
+
 	@RequestMapping("/allStaff")
 	public String showStaff(Model model) {
 		List<Employee> employees = scheServ.getEmployees();
 		model.addAttribute("allEmployees", employees);
 		return "/staffList.jsp";
 	}
-	
+
 	@RequestMapping(value="/employees/{id}", method=RequestMethod.DELETE)
 	public String deleteStaff(@PathVariable("id") Long id) {
 		scheServ.deleteStaff(id);
@@ -98,13 +98,13 @@ public class ScheduleController {
 		}
 		return "redirect:/schedule";
 	}
-	
+
 	@RequestMapping("/addStaff")
 	public String addStaffPage(@ModelAttribute("employee") Employee e, Model model) {
 		model.addAttribute("employee", e);
 		return "addStaff.jsp";
 	}
-	
+
 	@RequestMapping(value="/addStaff", method=RequestMethod.POST)
 	public String addStaff(@ModelAttribute("employee") Employee e, BindingResult result) {
 		if(result.hasErrors()) {
@@ -125,7 +125,7 @@ public class ScheduleController {
 		model.addAttribute("byDay", scheByDay);
 		return "testByDay.jsp";
 	}
-	
+
 	@RequestMapping("/swap")
 	public String swapPage(@ModelAttribute("scheduleObj")Schedule s, Model model, HttpSession session) {
 		Long id = (Long) session.getAttribute("emp_id");
@@ -135,13 +135,12 @@ public class ScheduleController {
 		model.addAttribute("scheduleObj", s);
 		return "swap.jsp";
 	}
-	
+
 //	@RequestMapping(value="/schedule/{id}/swap", method= RequestMethod.PUT)
 //	public String swap(@ModelAttribute("scheduleObj") Schedule s, BindingResult result) {
 //		scheServ.get
 //	}
-	
-	
-	
-}
 
+
+
+}

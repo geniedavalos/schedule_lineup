@@ -16,14 +16,17 @@ import com.codingdojo.lineup.services.EmployeeService;
 import com.codingdojo.lineup.services.ScheduleService;
 import com.codingdojo.lineup.validators.EmployeeValidator;
 
+
 @Controller
 public class AuthController {
 	private final EmployeeService empServ;
 	private final EmployeeValidator empValidator;
+	private final ScheduleService scheServ;
 	
-	public AuthController(EmployeeValidator empVal, EmployeeService empServ) {
+	public AuthController(EmployeeValidator empVal, EmployeeService empServ, ScheduleService scheduleService) {
 		empValidator = empVal;
 		this.empServ = empServ;
+		scheServ = scheduleService;
 		
 	}
 	
@@ -52,9 +55,11 @@ public class AuthController {
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
+		System.out.println(email);
+		System.out.println(password);
 		if(empServ.authenticateEmployee(email, password) == false ) {
 			model.addAttribute("error", "Invalid Credentials, please try again!");
-			return "login.jsp";
+			return "redirect:/";
 		} else{
 			Employee emp = empServ.findByEmail(email);
 			session.setAttribute("emp_id", emp.getId());
