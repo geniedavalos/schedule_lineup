@@ -3,7 +3,7 @@ package com.codingdojo.lineup.services;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.json.simple.JSONObject;
+
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
