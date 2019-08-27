@@ -34,7 +34,7 @@ public class ScheduleController {
 		model.addAttribute("schedule", s);
 		List<Schedule> schedules = scheServ.getSchedules();
 		model.addAttribute("schedules", schedules);
-		return "/calendar/fullCalendar.jsp";
+		return "/calendar/calendar.jsp";
 	}
 	
 	@RequestMapping("/addSchedule")
