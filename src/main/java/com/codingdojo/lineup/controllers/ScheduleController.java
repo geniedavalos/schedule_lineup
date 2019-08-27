@@ -4,8 +4,11 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codingdojo.lineup.models.Employee;
 import com.codingdojo.lineup.models.Schedule;
@@ -32,9 +36,16 @@ public class ScheduleController {
 	@RequestMapping("")
 	public String dashboard(@ModelAttribute("schedule") Schedule s, Model model) {
 		model.addAttribute("schedule", s);
-		List<Schedule> schedules = scheServ.getSchedules();
-		model.addAttribute("schedules", schedules);
+		model.addAttribute("schedules", scheServ.getSchedules());
 		return "/calendar/fullCalendar.jsp";
+	}
+	
+	@RequestMapping("/checks")
+	@ResponseBody
+	public String test(@RequestParam("searchDate") Date date, HttpServletRequest request, HttpServletResponse response, Model model) {
+		System.out.println(date);
+		return "/calendar/fullCalendar.jsp";
+		
 	}
 	
 	@RequestMapping("/addSchedule")

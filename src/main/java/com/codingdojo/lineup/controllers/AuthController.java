@@ -32,6 +32,7 @@ public class AuthController {
 		model.addAttribute("employee", e);
 		return "testForm.jsp";
 	}
+	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String register(@Valid @ModelAttribute("employee") Employee e, BindingResult result, HttpSession session) {
 	empValidator.validate(e, result);
