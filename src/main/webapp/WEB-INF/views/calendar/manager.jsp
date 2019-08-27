@@ -364,6 +364,40 @@ color: red;}
 		</form:form>
 		</div>
   </section>
+  
+  <section class="viewSchedule white">
+  <div class="container">
+	<h3>Schedules</h3>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Position</th>
+					<th scope="col">Day scheduled</th>
+					<th scope="col">Start time</th>
+					<th scope="col">End time</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${schedules}" var="schedule">
+				<tr>
+					<td><c:out value="${schedule.employee.firstName} ${schedule.employee.lastName}"/></td>
+					<td>
+						<c:choose>
+							<c:when test="${schedule.employee.accessLevel==9}">Manager</c:when>
+							<c:when test="${schedule.employee.accessLevel==1}">Employee</c:when>
+						</c:choose>
+					</td>
+					<td><fmt:formatDate pattern="E, MM/dd/yyyy" value = "${schedule.workDate}"/></td>
+					<td><fmt:formatDate pattern="hh:mm a" value = "${schedule.startHour}"/></td>
+					<td><fmt:formatDate pattern="hh:mm a" value = "${schedule.endHour}"/></td>
+				</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		</div>
+		</section>
 
   <script src="/js/calendar.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
