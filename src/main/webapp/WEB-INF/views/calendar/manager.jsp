@@ -33,6 +33,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var dateToSchedule;
+        
         var data = [
     		<c:forEach items="${schedules}" var="schedule" varStatus="loop">
     			{
@@ -49,13 +50,16 @@
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
           },
-          defaultDate: '2019-08-29',
           navLinks: true, // can click day/week names to navigate views
           businessHours: true, // display business hours
           editable: true,
           selectable:true,
           dateClick:function(info){
-        	dateToSchedule = info.date;
+        	 
+        	dateToSchedule = info.dateStr;
+        	var string = '<input id="workDate" type="hidden" value="'+ dateToSchedule+'" name="workDate" />';
+        	document.getElementById("dateInput").innerHTML= string;
+        	$('#exampleModal').modal('show');
           },
           events:data
         });
@@ -66,6 +70,35 @@
 </head>
 
 <body>
+
+	<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Schedule Employee</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form:form action="/schedule/addSchedule" method="post" modelAttribute="schedule">
+        	<form:select path="employee">
+				<c:forEach items="${allEmployees}" var="emp">
+					<form:option value="${emp.id}" label="${emp.firstName} ${emp.lastName}"/>
+				</c:forEach>
+			</form:select>
+			<div id="dateInput"></div>
+			<form:label path="startHour">Start time</form:label>
+			<form:input type="time" path="startHour"/>
+			<form:label path="endHour">End time</form:label>
+			<form:input type="time" path="endHour"/>
+			<button type="submit" class="btn btn-success">Submit</button>
+        </form:form>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -102,8 +135,8 @@
         	<c:forEach var="req" items="${requests}">
         	<c:if test="${req.approved == null}">
 	        	 <li>
-			    <strong><c:out value="${req.sender.firstName} ${req.sender.lastName}"/></strong> - <strong>FROM</strong>  <fmt:formatDate pattern="E, MM/dd/yyyy" value="${req.start}"/> <strong>TO</strong> <fmt:formatDate pattern="E, MM/dd/yyyy" value="${req.end}"/><a href="#" class="green"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></a>
-			    <a href="#" class="red"><i class="fa fa-calendar-times-o" aria-hidden="true"></i></a>
+			    <strong><c:out value="${req.sender.firstName} ${req.sender.lastName}"/></strong> - <strong>FROM</strong>  <fmt:formatDate pattern="E, MM/dd/yyyy" value="${req.start}"/> <strong>TO</strong> <fmt:formatDate pattern="E, MM/dd/yyyy" value="${req.end}"/><a href="/schedule/request/${req.id}/accepted" class="green"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></a>
+			    <a href="/schedule/request/${req.id}/denied" class="red"><i class="fa fa-calendar-times-o" aria-hidden="true"></i></a>
 	       	</li>
         	</c:if>
         	</c:forEach>
@@ -113,90 +146,9 @@
     </div>
   </section>
   
-  <section class="schedule white">
-    <div class="container">
-      <h3>Schedule View</h3>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-        <label class="form-check-label" for="exampleRadios1">
-          Day
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-        <label class="form-check-label" for="exampleRadios1">
-          Week
-        </label>
-      </div>
-      <a href="#" class="btn btn-primary">Submit</a>
-
-
-      <div class="selected_day">
-        <h4>Day</h4>
-        <div class="row">
-          <div class="col-4">
-            <h3 class="title">{event.date}</h3>
-          </div>
-          <div class="col-8">
-            <p> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</p>
-            <p> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</p>
-            <p> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</p>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="selected_week">
-        <h4>Week</h4>
-        <div class="row">
-          <ul class="col-4">
-            <h3 class="title">{event.date}</h3>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-          </ul>
-          <ul class="col-4">
-            <h3 class="title">{event.date}</h3>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-          </ul>
-          <ul class="col-4">
-            <h3 class="title">{event.date}</h3>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-          </ul>
-          <ul class="col-4">
-            <h3 class="title">{event.date}</h3>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-          </ul>
-          <ul class="col-4">
-            <h3 class="title">{event.date}</h3>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-          </ul>
-          <ul class="col-4">
-            <h3 class="title">{event.date}</h3>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-          </ul>
-          <ul class="col-4">
-            <h3 class="title">{event.date}</h3>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-            <li> <strong>{schedule.employee.name}</strong> - {schedule.employee.time}</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+ 
   
-  <section class="addSchedule white">
+<%--   <section class="addSchedule white">
   <div class="container">
   <h3>Add someone to schedule</h3>
 		<form:form action="/schedule/addSchedule" method="POST" modelAttribute="schedule">
@@ -214,7 +166,7 @@
 			<button type="submit" class="btn btn-success">Submit</button>
 		</form:form>
 		</div>
-  </section>
+  </section> --%>
   
   <section class="viewSchedule white">
   <div class="container">

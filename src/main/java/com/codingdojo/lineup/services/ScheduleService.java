@@ -73,5 +73,9 @@ public class ScheduleService {
 	public Request sendRequest(Request r) {
 		return reqRepo.save(r);
 	}
+	
+	public Request getRequest(Long id) {
+		return reqRepo.findById(id).get();
+	}
 
 }

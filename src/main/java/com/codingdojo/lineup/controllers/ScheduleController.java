@@ -38,29 +38,36 @@ public class ScheduleController {
 	
 	@RequestMapping("/manager")
 	public String managerdashboard(@ModelAttribute("schedule") Schedule s, Model model, HttpSession session) {
-		model.addAttribute("schedule", s);
 		Long id = (Long) session.getAttribute("emp_id");
-		Employee manager = scheServ.getEmp(id);
-		List<Request> requests = manager.getRequests();
-		model.addAttribute("requests", requests);
-		List<Schedule> schedules = scheServ.getSchedules();
-		model.addAttribute("schedules", schedules);
-		
-		List<Employee> employees = scheServ.getEmployees();
-		model.addAttribute("allEmployees", employees);
-		model.addAttribute("schedule", s);
-		return "/calendar/manager.jsp";
+		if(id==null) {
+			return "redirect:/";
+		} else {
+			Employee manager = scheServ.getEmp(id);
+			if(manager.getAccessLevel() != 9) {
+				return "redirect:/schedule";
+			} else {
+				List<Request> requests = manager.getRequests();
+				model.addAttribute("requests", requests);
+				List<Schedule> schedules = scheServ.getSchedules();
+				model.addAttribute("schedules", schedules);
+				List<Employee> employees = scheServ.getEmployees();
+				model.addAttribute("allEmployees", employees);
+				model.addAttribute("schedule", s);
+				return "/calendar/manager.jsp";
+			}
+		}
 	}
 	
 	
 	@RequestMapping(value="/addSchedule", method=RequestMethod.POST)
-	public String addSchedule(@ModelAttribute("schedule")Schedule s, BindingResult result) {
+	public String addSchedule(@ModelAttribute("schedule")Schedule s, BindingResult result, Model model) {
 		if(result.hasErrors()) {
 			System.out.println(result);
 			return "/calendar/manager.jsp";
 		} else {
 			scheServ.addSchedule(s);
-			return "redirect:/schedule";
+			model.addAttribute("viewDate", s.getWorkDate());
+			return "redirect:/schedule/manager";
 		}
 	}
 	
@@ -163,6 +170,20 @@ public class ScheduleController {
 			
 			return "redirect:/schedule";
 		}
+	}
+	@RequestMapping("/request/{id}/{status}")
+	public String requestApproval(@PathVariable("status") String status, @PathVariable("id")Long id) {
+		if(status.equals("accepted")) {
+			Request req = scheServ.getRequest(id);
+			req.setApproved(true);
+			scheServ.sendRequest(req);
+		}
+		if(status.equals("denied")) {
+			Request req = scheServ.getRequest(id);
+			req.setApproved(false);
+			scheServ.sendRequest(req);
+		}
+		return "redirect:/schedule/manager";
 	}
 	
 	

@@ -55,6 +55,7 @@
           editable: true,
           selectable:true,
           dateClick: function(info){
+        	 console.log(info);
         	dateToSchedule = info.date;
         	$("#testBody").append("<p>" + dateToSchedule + "</p>");
         	$("#testBody").append("<input type='hidden' value='" +dateToSchedule+"' />");
@@ -71,10 +72,6 @@
 </head>
 
 <body>
-
-<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
 
 	<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
