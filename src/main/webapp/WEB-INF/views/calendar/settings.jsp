@@ -47,55 +47,53 @@
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form:form>
 		
-		<div id="editAccess">
+</section>
+
+  <section class="white">
+		<div id="editAccess" class="container">
 		<h3>Edit Access</h3>
 		<table class="table table-striped">
-				<thead>
-					<tr>
-						<th scope="col">First Name</th>
-						<th scope="col">Last Name</th>
-						<th scope="col">Position</th>
-						<th scope="col">Access Level</th>
-						<th scope="col">Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${allEmployees}" var="emp">
-						<tr>
-							<td><c:out value="${emp.firstName} "/></td>
-							<td><c:out value="${emp.lastName} "/></td>
-							<td>
-						<c:choose>
-							<c:when test="${emp.accessLevel==9}">Manager</c:when>
-							<c:when test="${emp.accessLevel==1}">Employee</c:when>
-						</c:choose>
-						</td>
-							<td>
-								<form action="/schedule/${emp.id}/changeAccess" method="POST">
-									<select name="accessLvl">
-										<option value="1" label="Employee"/>
-										<option value="9" label="Manager"/>
-									</select>
-									<button type="submit" class="btn btn-success">Update</button>
-								</form>
-							</td>
-							<td>
-								<a href="#" class="btn btn-primary">Edit</a>
-								<form action="/schedule/employees/${emp.id}" method="post" class="d-inline">
-									<input type="hidden" name="_method" value="delete">
-									<input class="btn btn-danger" type="submit" value="Delete"/>
-								</form>
-							</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-
-			</table>
+		<thead>
+			<tr>
+				<th scope="col">First Name</th>
+				<th scope="col">Last Name</th>
+				<th scope="col">Position</th>
+				<th scope="col">Access Level</th>
+				<th scope="col">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${allEmployees}" var="emp">
+				<tr>
+					<td><c:out value="${emp.firstName} "/></td>
+					<td><c:out value="${emp.lastName} "/></td>
+					<td>
+				<c:choose>
+					<c:when test="${emp.accessLevel==9}">Manager</c:when>
+					<c:when test="${emp.accessLevel==1}">Employee</c:when>
+				</c:choose>
+				</td>
+					<td>
+						<form action="/schedule/${emp.id}/changeAccess" method="POST">
+							<select name="accessLvl">
+								<option value="1" label="Employee"/>
+								<option value="9" label="Manager"/>
+							</select>
+							<button type="submit" class="btn btn-success">Update</button>
+						</form>
+					</td>
+					<td>
+						<a href="#" class="btn btn-primary">Edit</a>
+						<form action="/schedule/employees/${emp.id}" method="post" class="d-inline">
+							<input type="hidden" name="_method" value="delete">
+							<input class="btn btn-danger" type="submit" value="Delete"/>
+						</form>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 	</div>
-	
-	
-	</div>
-		
 </section>
 
    <div id="footer">
