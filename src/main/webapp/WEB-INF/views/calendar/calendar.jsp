@@ -106,6 +106,12 @@
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
+       <li class="nav-item active">
+          <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#dayOffRequest">
+ Day Off Request
+</button>
+        </li>
+      
         <li class="nav-item active">
           <a class="nav-link" href="/logout">Sign Out</a>
         </li>
@@ -113,6 +119,37 @@
     </div>
   </nav>
   <!-- NAVBAR ENDS -->
+
+	<!-- Modal -->
+<div class="modal fade" id="dayOffRequest" tabindex="-1" role="dialog" aria-labelledby="dayOffRequestLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="dayOffRequestLabel">Day Off Request</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="testBody">
+         <form:form action="/schedule/requestOff" method="post" modelAttribute="request">
+        	<form:hidden path="sender" value="${emp_id}"/>
+        	<form:label path="start">Start Date</form:label>
+        	<form:input type="date" class="form-control" path="start"/>
+        	<form:label path="end">End Date</form:label>
+        	<form:input type="date" class="form-control" path="end"/>
+        	<form:label path="description">Description</form:label>
+        	<form:input type="textarea" class="form-control" path="description"/>
+        	  <div class="text-center mx-3 my-3">
+        	<button type="submit" class="btn btn-primary">Submit</button>
+        	 </div>
+        </form:form> 
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+ 
   <section class="top_info">
     <div class="row">
       <div class="container mt-2 col-10">
@@ -144,28 +181,6 @@
           <a href="#" class="btn btn-primary">Submit</a>
 
         </div>
-      </div>
-
-      <div class="col-5 container">
-        <h4>Day Off Request</h4>
-        <h5>Date</h5>
-        <form:form action="/schedule/requestOff" method="post" modelAttribute="request">
-        	<form:hidden path="sender" value="${emp_id}"/>
-        	<form:label path="start">Start Date</form:label>
-        	<form:input type="date" path="start"/>
-        	<form:label path="end">End Date</form:label>
-        	<form:input type="date" path="end"/>
-		<form:label path="type">Type</form:label>
-        	<form:select path="type">
-        		<form:option value="paid" label="PTO"/>
-        		<form:option value="sick" label="Sick"/>
-        		<form:option value="pto" label="Others"/>
-        	</form:select>
-        	<form:label path="description">Description</form:label>
-        	<form:input type="textarea" path="description"/>
-        	<button type="submit" class="btn btn-primary">submit</button>
-        </form:form>
-        
       </div>
     </div>
   </section>
