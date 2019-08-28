@@ -77,10 +77,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
        <li class="nav-item active">
-          <a class="nav-link" href="#">Settings</a>
+          <a class="nav-link" href="/schedule/settings">Settings</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#">Sign Out</a>
+          <a class="nav-link" href="/logout">Sign Out</a>
         </li>
       </ul>
     </div>
