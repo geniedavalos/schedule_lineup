@@ -32,25 +32,34 @@
     </div>
   </nav>
 
+<div class="container">
   <section class="white">
 	<div id="addStaffMember" class="container">
 	<h3>Add Staff</h3>
 		<form:form action="/schedule/addStaff" method="POST" modelAttribute="employee">
+		  <div class="form-group">
 			<form:label path="firstName">First Name</form:label>
-			<form:input path="firstName"/>
+			<form:input path="firstName" class="form-control"/>
+			</div>
+			  <div class="form-group">
 			<form:label path="lastName">Last Name</form:label>
-			<form:input path="lastName"/>
+			<form:input path="lastName" class="form-control"/>
+				</div>
+			  <div class="form-group">
 			<form:label path="email">Email</form:label>
-			<form:input path="email"/>
+			<form:input path="email" class="form-control"/>
+				</div>
+			  <div class="form-group">
 			<form:label path="password">Password</form:label>
-			<form:password path="password"/>
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<form:password path="password" class="form-control"/>
+				</div>
+			<button type="submit" class="btn btn-primary d-block mx-auto">Submit</button>
 		</form:form>
-		
+	</div>
 </section>
 
   <section class="white">
-		<div id="editAccess" class="container">
+		<div id="editAccess" class="container table-responsive">
 		<h3>Edit Access</h3>
 		<table class="table table-striped">
 		<thead>
@@ -105,6 +114,7 @@
         </div>
     <div class="text-center text-white">© Copyright 2019 LineUp </div>
   </div>
+ </div>
   
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
