@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,6 +32,16 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
+        var dateToSchedule;
+        var data = [
+    		<c:forEach items="${schedules}" var="schedule" varStatus="loop">
+    			{
+    			'title': '${schedule.employee.firstName} ${schedule.employee.lastName}',
+    			'start': '<fmt:formatDate pattern="yyyy-MM-dd" value="${schedule.workDate}"/>T<fmt:formatDate pattern="hh:mm:ss" value="${schedule.startHour}"/>'
+    			}${!loop.last ? ',': ''}
+    		</c:forEach>
+    		]
+        
         var calendar = new FullCalendar.Calendar(calendarEl, {
           plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
           header: {
@@ -43,58 +55,9 @@
           editable: true,
           selectable:true,
           dateClick:function(info){
-        	console.log(info);
+        	dateToSchedule = info.date;
           },
-          events: [
-            {
-              title: 'Business Lunch',
-              start: '2019-08-03T13:00:00',
-              constraint: 'businessHours'
-            },
-            {
-              title: 'Meeting',
-              start: '2019-08-13T11:00:00',
-              constraint: 'availableForMeeting', // defined below
-              color: '#257e4a'
-            },
-            {
-              title: 'Conference',
-              start: '2019-08-18',
-              end: '2019-08-20'
-            },
-            {
-              title: 'Party',
-              start: '2019-08-29T20:00:00'
-            },
-            // areas where "Meeting" must be dropped
-            {
-              groupId: 'availableForMeeting',
-              start: '2019-08-11T10:00:00',
-              end: '2019-08-11T16:00:00',
-              rendering: 'background'
-            },
-            {
-              groupId: 'availableForMeeting',
-              start: '2019-08-13T10:00:00',
-              end: '2019-08-13T16:00:00',
-              rendering: 'background'
-            },
-            // red areas where no events can be dropped
-            {
-              start: '2019-08-24',
-              end: '2019-08-28',
-              overlap: false,
-              rendering: 'background',
-              color: '#ff9f89'
-            },
-            {
-              start: '2019-08-06',
-              end: '2019-08-08',
-              overlap: false,
-              rendering: 'background',
-              color: '#ff9f89'
-            }
-          ]
+          events:data
         });
         calendar.render();
       });
@@ -136,19 +99,16 @@
       <h3>Pending Request</h3>
       <div class="pending_items">
         <ul class="center">
-          <li>
-            <strong>{schedule.first_name}</strong> - {schedule.time} <a href="#" class="green"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></a>
-            <a href="#" class="red"><i class="fa fa-calendar-times-o" aria-hidden="true"></i></a>
-          </li>
-          <li>
-            <strong>{schedule.first_name}</strong> - {schedule.time} <a href="#" class="green"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></a>
-            <a href="#" class="red"><i class="fa fa-calendar-times-o" aria-hidden="true"></i></a>
-          </li>
-          <li>
-            <strong>{schedule.first_name}</strong> - {schedule.time} <a href="#" class="green"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></a>
-            <a href="#" class="red"><i class="fa fa-calendar-times-o" aria-hidden="true"></i></a>
-          </li>
+        	<c:forEach var="req" items="${requests}">
+        	<c:if test="${req.approved == null}">
+	        	 <li>
+			    <strong><c:out value="${req.sender.firstName} ${req.sender.lastName}"/></strong> - <strong>FROM</strong>  <fmt:formatDate pattern="E, MM/dd/yyyy" value="${req.start}"/> <strong>TO</strong> <fmt:formatDate pattern="E, MM/dd/yyyy" value="${req.end}"/><a href="#" class="green"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></a>
+			    <a href="#" class="red"><i class="fa fa-calendar-times-o" aria-hidden="true"></i></a>
+	       	</li>
+        	</c:if>
+        	</c:forEach>
         </ul>
+
       </div>
     </div>
   </section>
@@ -290,15 +250,15 @@
 		</div>
 		</section>
 		
-		   <div id="footer">
-        <div class="row social justify-content-center">
-          <a href="#" class="fa fa-facebook"></a>
-          <a href="#" class="fa fa-twitter"></a>
-          <a href="#" class="fa fa-youtube"></a>
-          <a href="#" class="fa fa-skype"></a>
-        </div>
-    <div class="text-center text-white">© Copyright 2019 LineUp </div>
-  </div>
+	<div id="footer">
+		<div class="row social justify-content-center">
+	          <a href="#" class="fa fa-facebook"></a>
+	          <a href="#" class="fa fa-twitter"></a>
+	          <a href="#" class="fa fa-youtube"></a>
+	          <a href="#" class="fa fa-skype"></a>
+	       </div>
+	    	<div class="text-center text-white">© Copyright 2019 LineUp </div>
+  	</div>
 
   <script src="/js/calendar.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

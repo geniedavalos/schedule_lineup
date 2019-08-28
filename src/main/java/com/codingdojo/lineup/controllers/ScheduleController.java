@@ -1,7 +1,8 @@
 package com.codingdojo.lineup.controllers;
 
-import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,20 +37,21 @@ public class ScheduleController {
 	}
 	
 	@RequestMapping("/manager")
-	public String managerdashboard(@ModelAttribute("schedule") Schedule s, Model model) {
+	public String managerdashboard(@ModelAttribute("schedule") Schedule s, Model model, HttpSession session) {
 		model.addAttribute("schedule", s);
+		Long id = (Long) session.getAttribute("emp_id");
+		Employee manager = scheServ.getEmp(id);
+		List<Request> requests = manager.getRequests();
+		model.addAttribute("requests", requests);
 		List<Schedule> schedules = scheServ.getSchedules();
 		model.addAttribute("schedules", schedules);
+		
+		List<Employee> employees = scheServ.getEmployees();
+		model.addAttribute("allEmployees", employees);
+		model.addAttribute("schedule", s);
 		return "/calendar/manager.jsp";
 	}
 	
-	@RequestMapping("/addSchedule")
-	public String addForm(@ModelAttribute("schedule") Schedule s, Model model) {
-		List<Employee> employees = scheServ.getEmployees();
-		model.addAttribute("schedule", s);
-		model.addAttribute("allEmployees", employees);
-		return "/calendar/manager.jsp";
-	}
 	
 	@RequestMapping(value="/addSchedule", method=RequestMethod.POST)
 	public String addSchedule(@ModelAttribute("schedule")Schedule s, BindingResult result) {
@@ -75,16 +77,28 @@ public class ScheduleController {
 		Employee e = scheServ.getEmp(id);
 		if(accLvl == 9) {
 			e.setAccessLevel(accLvl);
-			e.getManagers().add(e);
+			List<Employee> managers = e.getManagers();
+			if(e.getEmployees().contains(e)) {
+				e.getEmployees().remove(e);
+			}
+			if(!managers.contains(e)) {
+				managers.add(e);
+			}
 			scheServ.registerEmployee(e);
 		}
 		if(accLvl == 1) {
 			e.setAccessLevel(accLvl);
-			e.getEmployees().add(e);
+			List<Employee>employees = e.getEmployees();
+			if(e.getManagers().contains(e)) {
+				e.getManagers().remove(e);
+			}
+			if(!employees.contains(e)) {
+				employees.add(e);
+			}
 			scheServ.registerEmployee(e);
 		}
 
-		return "redirect:/schedule";
+		return "redirect:/schedule/settings";
 	}
 	
 	@RequestMapping("/allStaff")
@@ -101,7 +115,7 @@ public class ScheduleController {
 		for(Schedule schedule: schedules) {
 			scheServ.deleteSchedule(schedule.getId());
 		}
-		return "redirect:/schedule";
+		return "redirect:/schedule/settings";
 	}
 	
 	@RequestMapping("/addStaff")

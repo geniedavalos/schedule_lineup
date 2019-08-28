@@ -56,6 +56,7 @@
 						<th scope="col">Last Name</th>
 						<th scope="col">Position</th>
 						<th scope="col">Access Level</th>
+						<th scope="col">Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -65,8 +66,8 @@
 							<td><c:out value="${emp.lastName} "/></td>
 							<td>
 						<c:choose>
-							<c:when test="${schedule.employee.accessLevel==9}">Manager</c:when>
-							<c:when test="${schedule.employee.accessLevel==1}">Employee</c:when>
+							<c:when test="${emp.accessLevel==9}">Manager</c:when>
+							<c:when test="${emp.accessLevel==1}">Employee</c:when>
 						</c:choose>
 						</td>
 							<td>
@@ -78,6 +79,13 @@
 									<button type="submit" class="btn btn-success">Update</button>
 								</form>
 							</td>
+							<td>
+								<a href="#" class="btn btn-primary">Edit</a>
+								<form action="/schedule/employees/${emp.id}" method="post" class="d-inline">
+									<input type="hidden" name="_method" value="delete">
+									<input class="btn btn-danger" type="submit" value="Delete"/>
+								</form>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -86,41 +94,6 @@
 	</div>
 	
 	
-	<div id="allStaffMembers">
-	<h3>All Staff</h3>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th scope="col">First Name</th>
-					<th scope="col">Last Name</th>
-					<th scope="col">Position</th>
-					<th scope="col">Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${allEmployees}" var="emp">
-					<tr>
-						<td><c:out value="${emp.firstName}"/></td>
-						<td><c:out value="${emp.lastName}"/></td>
-						<td>
-						<c:choose>
-							<c:when test="${schedule.employee.accessLevel==9}">Manager</c:when>
-							<c:when test="${schedule.employee.accessLevel==1}">Employee</c:when>
-						</c:choose>
-						</td>
-						<td>
-							<a href="#" class="btn btn-primary">Edit</a>
-							<form action="/schedule/employees/${emp.id}" method="post" class="d-inline">
-								<input type="hidden" name="_method" value="delete">
-								<input class="btn btn-danger" type="submit" value="Delete"/>
-							</form>
-						</td>
-					</tr>
-				</c:forEach>
-
-			</tbody>
-		</table>
-	</div>
 	</div>
 		
 </section>

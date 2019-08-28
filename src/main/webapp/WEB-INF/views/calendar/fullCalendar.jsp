@@ -35,7 +35,7 @@
         			'start': '<fmt:formatDate pattern="yyyy-MM-dd" value="${schedule.workDate}"/>T<fmt:formatDate pattern="hh:mm:ss" value="${schedule.startHour}"/>'
         			}${!loop.last ? ',': ''}
         		</c:forEach>
-        ]
+        ];
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
           plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
