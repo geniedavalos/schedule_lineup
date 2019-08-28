@@ -62,8 +62,8 @@ public class ScheduleService {
 		e.setPassword(hashed);
 		return empRepo.save(e);
 	}
-	public List<Schedule> getByDay(LocalDate startDate, LocalDate endDate){
-		return scheRepo.findByDate(startDate, endDate);
+	public List<Schedule> getByDay(LocalDate d, LocalDate d2){
+		return scheRepo.findByDate(d, d2);
 	}
 	
 	public List<Employee> getManagers(){

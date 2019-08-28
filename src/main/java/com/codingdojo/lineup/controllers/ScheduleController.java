@@ -1,5 +1,7 @@
 package com.codingdojo.lineup.controllers;
 
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -60,13 +62,14 @@ public class ScheduleController {
 	
 	
 	@RequestMapping(value="/addSchedule", method=RequestMethod.POST)
-	public String addSchedule(@ModelAttribute("schedule")Schedule s, BindingResult result, Model model) {
+	public String addSchedule(@ModelAttribute("schedule")Schedule s, BindingResult result) {
 		if(result.hasErrors()) {
 			System.out.println(result);
 			return "/calendar/manager.jsp";
+		} else if (s.getWorkDate() == null || s.getStartHour() == null || s.getEndHour() == null) {
+			return "/calendar/manager.jsp";
 		} else {
 			scheServ.addSchedule(s);
-			model.addAttribute("viewDate", s.getWorkDate());
 			return "redirect:/schedule/manager";
 		}
 	}
@@ -185,6 +188,7 @@ public class ScheduleController {
 		}
 		return "redirect:/schedule/manager";
 	}
+	
 	
 	
 }

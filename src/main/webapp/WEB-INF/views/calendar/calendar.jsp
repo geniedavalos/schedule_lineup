@@ -43,11 +43,11 @@
     		]
         
         var calendar = new FullCalendar.Calendar(calendarEl, {
-          plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+          plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
           header: {
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
           },
           defaultDate: '2019-08-29',
           navLinks: true, // can click day/week names to navigate views
@@ -55,12 +55,7 @@
           editable: true,
           selectable:true,
           dateClick: function(info){
-        	 console.log(info);
-        	dateToSchedule = info.date;
-        	$("#testBody").append("<p>" + dateToSchedule + "</p>");
-        	$("#testBody").append("<input type='hidden' value='" +dateToSchedule+"' />");
-       	$('#exampleModal').modal('show');
-        	console.log(dateToSchedule);
+	       dateToSchedule = info.dateStr;
           },
           events:data
         });
@@ -199,7 +194,10 @@
   <!-- Optional JavaScript for bootstrap -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
