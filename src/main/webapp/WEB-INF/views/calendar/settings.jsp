@@ -61,7 +61,7 @@
   <section class="white">
 		<div id="editAccess" class="container table-responsive">
 		<h3>Edit Access</h3>
-		<table class="table table-striped">
+		<table class="table table-striped text-center">
 		<thead>
 			<tr>
 				<th scope="col">First Name</th>
