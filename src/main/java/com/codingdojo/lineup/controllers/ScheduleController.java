@@ -38,6 +38,12 @@ public class ScheduleController {
 		model.addAttribute("schedules", schedules);
 		return "/calendar/calendar.jsp";
 	}
+	@RequestMapping("/swap-request")
+	public String swap(@ModelAttribute("schedule") Schedule s, Model model, HttpSession session) {
+		List<Schedule> schedules = scheServ.getSchedules();
+		model.addAttribute("schedules", schedules);	
+		return "/calendar/swapRequest.jsp";
+	}
 	
 	@RequestMapping("/manager")
 	public String managerdashboard(@ModelAttribute("schedule") Schedule s, Model model, HttpSession session) {

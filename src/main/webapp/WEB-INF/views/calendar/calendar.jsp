@@ -26,10 +26,10 @@
   <script src='/fullcalendar/packages/list/main.js'></script>
   <link rel="stylesheet" type="text/css" href="/css/app.css">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  
+
   <script>
-  
-  
+
+
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var dateToSchedule;
@@ -41,7 +41,7 @@
     			}${!loop.last ? ',': ''}
     		</c:forEach>
     		]
-        
+
         var calendar = new FullCalendar.Calendar(calendarEl, {
           plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
           header: {
@@ -65,7 +65,7 @@
        			data = JSON.parse(data)
        			let s = ""
        			s += "<select class='align-center'>"
-       			
+
        			for(let i = 0; i < data['people'].length; i++){
        				let startdate = new Date(data.people[i].start_hour)
        				let startminutes = "0"
@@ -81,7 +81,7 @@
        					endminutes = "0" + enddate.getMinutes();
        				} else {
        					endminutes = enddate.getMinutes();
-       				} 
+       				}
        				s += "<option>";
        				s += data.people[i].first_name + " ";
        				s += data.people[i].last_name + " ";
@@ -91,19 +91,19 @@
        				s += "</option>";
        			}
        			s += "</select>";
-       			 
+
        			$('#swapContainer').html(s)
        		},
        		error:function(error){
        			console.log(error);
        		}
-       	})  
+       	})
           },
           events:data
         });
         calendar.render();
-  
-	
+
+
       });
     </script>
 </head>
@@ -125,7 +125,7 @@
  Day Off Request
 </button>
         </li>
-      
+
         <li class="nav-item active">
           <a class="nav-link" href="/logout">Sign Out</a>
         </li>
@@ -157,7 +157,7 @@
         	  <div class="text-center mx-3 my-3">
         	<button type="submit" class="btn btn-primary">Submit</button>
         	 </div>
-        </form:form> 
+        </form:form>
       </div>
     </div>
   </div>
@@ -165,9 +165,10 @@
 </div>
 
  <div id="swapContainer">
- 
+
  </div>
- 
+
+ <div class="container">
   <section class="top_info">
     <div class="row">
       <div class="container mt-2 col-10">
@@ -179,30 +180,13 @@
   <section class="bottom_info">
     <div class="row">
       <div class="col-5 container mt-2">
-        <h4>Shift Schedule</h4>
-        <h5 class="center"> {schedule.workDate}</h5>
-
-        <div class="form-check center">
-          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-          <label class="form-check-label" for="exampleRadios1">
-            <strong>{schedule.workDate.first_name}</strong> : {schedule.workDate.startHour} - {schedule.workDate.endHour}
-          </label>
-        </div>
-
-        <div class="form-check center">
-          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-          <label class="form-check-label" for="exampleRadios1">
-            <strong>{schedule.workDate.first_name}</strong> : {schedule.workDate.startHour} - {schedule.workDate.endHour}
-          </label>
-        </div>
-        <div class="center">
-          <a href="#" class="btn btn-primary">Submit</a>
-
-        </div>
+        <h4>Request To Swap A Shift?</h4>
+        <input type="date">
+        <a href="/schedule/swap-request" class="btn btn-outline-primary">Go!</a>
       </div>
     </div>
   </section>
-  
+
      <div id="footer">
         <div class="row social justify-content-center">
           <a href="#" class="fa fa-facebook"></a>
@@ -212,16 +196,14 @@
         </div>
     <div class="text-center text-white">© Copyright 2019 LineUp </div>
   </div>
-	<div id="dummy">
-		<p>First Name Last Name<p>
-	</div>
+
 
   <!-- <button name="jump" onclick="jump()">Go</button> -->
   <script src="/js/calendar.js"></script>
 
   <!-- Optional JavaScript for bootstrap -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  
+
   <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="

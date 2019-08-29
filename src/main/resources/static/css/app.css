@@ -17,7 +17,11 @@ background: white;
 padding: 2%;
 margin: 2%;	
 }
-
+.block {
+	display: block;
+	vertical-align: top;
+	
+}
   #calendar {
 	    max-width: 900px;
 	    margin: 0 auto;
@@ -36,6 +40,10 @@ margin: 2%;
  
  .red {
  color: red;
+ }
+ 
+ #green, #red {
+ font-size: 1.3rem;
  }
  
 #header {
@@ -61,8 +69,8 @@ nav a, nav a:hover, .footer-item a, .footer-item a:hover {
 }
 
 .fa {
-  padding: 10px;
-  margin: 10px;
+  padding: 5px;
+  margin: 5px;
   font-size: 30px;
   width: 50px;
   text-align: center;
@@ -71,6 +79,9 @@ nav a, nav a:hover, .footer-item a, .footer-item a:hover {
   border: 1px white solid;
 }
 
+a:hover{
+	text-decoration: none;
+}
 .social {
   vertical-align: middle;
 }
