@@ -47,7 +47,7 @@
           header: {
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+            right: 'dayGridMonth,timeGridWeek'
           },
           defaultDate: '2019-08-29',
           navLinks: true, // can click day/week names to navigate views
