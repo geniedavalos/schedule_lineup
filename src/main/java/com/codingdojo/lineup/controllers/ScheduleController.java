@@ -31,8 +31,7 @@ public class ScheduleController {
 	}
 	
 	@RequestMapping("")
-	public String dashboard(@ModelAttribute("schedule") Schedule s, 
-			@ModelAttribute("request")Request req, Model model) {
+	public String dashboard(@ModelAttribute("schedule") Schedule s, @ModelAttribute("request")Request req, Model model) {
 		model.addAttribute("schedule", s);
 		model.addAttribute("request",req);
 		List<Schedule> schedules = scheServ.getSchedules();
@@ -58,7 +57,7 @@ public class ScheduleController {
 			} else {
 				List<Request> requests = manager.getRequests();
 				model.addAttribute("requests", requests);
-				List<Schedule> schedules = scheServ.getSchedules();
+				List<Schedule> schedules = scheServ.schedulesOrderByWorkDate();
 				model.addAttribute("schedules", schedules);
 				List<Employee> employees = scheServ.getEmployees();
 				model.addAttribute("allEmployees", employees);
@@ -82,6 +81,7 @@ public class ScheduleController {
 			}
 		}
 	}
+	
 	
 	@RequestMapping(value="/addSchedule", method=RequestMethod.POST)
 	public String addSchedule(@ModelAttribute("schedule")Schedule s, BindingResult result) {
@@ -195,7 +195,10 @@ public class ScheduleController {
 		if(result.hasErrors()) {
 			System.out.println(result);
 			return "/calendar/calendar.jsp";
-		} else {
+		} else if (req.getStart() == null || req.getEnd() == null || req.getDescription() == null){
+			System.out.println("error");
+			return "/calendar/calendar.jsp";
+			} else {
 			List<Employee> managers = scheServ.getManagers();
 			for(Employee manager: managers) {
 				Request newReq = req;
@@ -221,39 +224,39 @@ public class ScheduleController {
 		return "redirect:/schedule/manager";
 	}
 	
-	@PostMapping("/getByDay")
-	public @ResponseBody String getByDay(@RequestParam("date") String date) {
-		LocalDate startDate = LocalDate.parse(date);
-		LocalDate endDate = startDate.plusDays(1);
-		List<Schedule> schedules = scheServ.getByDay(startDate, endDate);
-		String s = "{'people':[";
-		for(int i = 0; i < schedules.size();i++) {
-			Employee e = schedules.get(i).getEmployee();
-			Schedule sch = schedules.get(i);
-			s += "{";
-			s += "'id':";
-			s += "'"+e.getId() + "',";
-			s += "'first_name':";
-			s += "'"+e.getFirstName() + "',";
-			s += "'last_name':";
-			s += "'"+e.getLastName() + "',";
-			s += "'start_hour':";
-			s += "'"+sch.getStartHour() + "',";
-			s += "'end_hour':";
-			s += "'"+sch.getEndHour() + "'";
-			
-			if(i == schedules.size() - 1) {
-				s += "}";
-			} else {	
-				s += "},";
-			}
-			
-		}
-		s += "]}";
-		System.out.println(s);
-		return s;
-		
-	}
+//	@PostMapping("/getByDay")
+//	public @ResponseBody String getByDay(@RequestParam("date") String date) {
+//		LocalDate startDate = LocalDate.parse(date);
+//		LocalDate endDate = startDate.plusDays(1);
+//		List<Schedule> schedules = scheServ.getByDay(startDate, endDate);
+//		String s = "{'people':[";
+//		for(int i = 0; i < schedules.size();i++) {
+//			Employee e = schedules.get(i).getEmployee();
+//			Schedule sch = schedules.get(i);
+//			s += "{";
+//			s += "'id':";
+//			s += "'"+e.getId() + "',";
+//			s += "'first_name':";
+//			s += "'"+e.getFirstName() + "',";
+//			s += "'last_name':";
+//			s += "'"+e.getLastName() + "',";
+//			s += "'start_hour':";
+//			s += "'"+sch.getStartHour() + "',";
+//			s += "'end_hour':";
+//			s += "'"+sch.getEndHour() + "'";
+//			
+//			if(i == schedules.size() - 1) {
+//				s += "}";
+//			} else {	
+//				s += "},";
+//			}
+//			
+//		}
+//		s += "]}";
+//		System.out.println(s);
+//		return s;
+//		
+//	}
 	
 }
 

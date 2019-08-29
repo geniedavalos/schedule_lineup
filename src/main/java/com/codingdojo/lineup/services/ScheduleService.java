@@ -33,6 +33,10 @@ public class ScheduleService {
 		return scheRepo.findAll();
 	}
 	
+	public List<Schedule> schedulesOrderByWorkDate(){
+		return scheRepo.findAllByOrderByWorkDateASC();
+	}
+	
 	public List<Employee> getEmployees(){
 		return empRepo.findAll();
 	}

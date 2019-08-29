@@ -92,7 +92,6 @@
 						</form>
 					</td>
 					<td>
-						<a href="#" class="btn btn-primary">Edit</a>
 						<form action="/schedule/employees/${emp.id}" method="post" class="d-inline">
 							<input type="hidden" name="_method" value="delete">
 							<input class="btn btn-danger" type="submit" value="Delete"/>

@@ -54,7 +54,7 @@
           businessHours: true, // display business hours
           editable: true,
           selectable:true,
-          dateClick: function(info){
+          /* dateClick: function(info){
 	       dateToSchedule = info.dateStr;
 	       $.ajax({
        		url:"/schedule/getByDay",
@@ -82,6 +82,7 @@
        				} else {
        					endminutes = enddate.getMinutes();
        				}
+       				s += '<div class="container mt-2"> <h2 class="display-3 text-center">Swap Request</h2><section><div class="first text-center my-3"><h2>8/28/19</h2>';
        				s += "<option>";
        				s += data.people[i].first_name + " ";
        				s += data.people[i].last_name + " ";
@@ -98,7 +99,7 @@
        			console.log(error);
        		}
        	})
-          },
+          }, */
           events:data
         });
         calendar.render();
