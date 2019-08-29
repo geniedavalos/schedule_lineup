@@ -142,6 +142,7 @@
 </div>
 </div>
  
+ <div class="container">
   <section class="top_info">
     <div class="row">
       <div class="container mt-2 col-10">
@@ -186,7 +187,7 @@
         </div>
     <div class="text-center text-white">© Copyright 2019 LineUp </div>
   </div>
-
+</div>
 
   <!-- <button name="jump" onclick="jump()">Go</button> -->
   <script src="/js/calendar.js"></script>
