@@ -138,6 +138,7 @@
 				<tr>
 					<th scope="col">Name</th>
 					<th scope="col">Requested Dates</th>
+					<th scope="col">Reason</th>
 					<th scope="col">Action</th>
 					
 				</tr>
@@ -147,7 +148,8 @@
         	<c:if test="${req.approved == null}">
 				<tr>
 					<td><c:out value="${req.sender.firstName} ${req.sender.lastName}"/></td>
-					<td><fmt:formatDate pattern="MM/dd/yy" value="${req.start}"/> - <fmt:formatDate pattern="MM/dd/yy" value="${req.end}"/></td>
+					<td><fmt:formatDate pattern="E, MM/dd/yy" value="${req.start}"/> - <fmt:formatDate pattern="MM/dd/yy" value="${req.end}"/></td>
+					<td><c:out value="${req.description}"/></td>
 					<td><div class="block"><a href="/schedule/request/${req.id}/accepted" class="green">
 					<i class="fa fa-calendar-check-o" id="green" aria-hidden="true"></i> 
 					<a href="/schedule/request/${req.id}/denied" class="red">

@@ -13,6 +13,9 @@ import com.codingdojo.lineup.models.Schedule;
 public interface ScheduleRepository extends CrudRepository<Schedule, Long>{
 	List<Schedule> findAll();
 	
+	@Query(value="SELECT * FROM schedules ORDER BY work_date ASC", nativeQuery=true)
+	List<Schedule> findAllByOrderByWorkDateASC();
+	
 	@Query(value="SELECT * FROM schedules WHERE employee_id = ?1", nativeQuery=true)
 	List<Schedule> findAllByEmployeeId(Long id);
 	
