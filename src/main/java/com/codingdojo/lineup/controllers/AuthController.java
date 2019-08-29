@@ -33,13 +33,14 @@ public class AuthController {
 	@RequestMapping("")
 	public String index(@ModelAttribute("employee") Employee e, Model model) {
 		model.addAttribute("employee", e);
-		return "testForm.jsp";
+		return "register.jsp";
 	}
+	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String register(@Valid @ModelAttribute("employee") Employee e, BindingResult result, HttpSession session) {
 	empValidator.validate(e, result);
 	if(result.hasErrors()) {
-		return "testForm.jsp";
+		return "register.jsp";
 	} else {
 		Employee emp = empServ.registerEmployee(e);
 		session.setAttribute("emp_id", emp.getId());
@@ -47,28 +48,27 @@ public class AuthController {
 		}
 	}
 	
-	@RequestMapping("/login")
-	public String loginPage() {
-		return "testLogin.jsp";
-	}
-	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
-		System.out.println(email);
-		System.out.println(password);
 		if(empServ.authenticateEmployee(email, password) == false ) {
 			model.addAttribute("error", "Invalid Credentials, please try again!");
 			return "redirect:/";
 		} else{
 			Employee emp = empServ.findByEmail(email);
 			session.setAttribute("emp_id", emp.getId());
-			return "redirect:/schedule";
+			if(emp.getAccessLevel() == 9) {
+				return "redirect:/schedule/manager";
+			} else {
+				return "redirect:/schedule";
+			}
+			
+		
 		}
 	}
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/login";
+		return "redirect:/";
 	}
 }

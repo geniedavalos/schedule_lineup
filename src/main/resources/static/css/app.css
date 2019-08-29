@@ -1,29 +1,112 @@
 @charset "UTF-8";
 body {
-  background: #304d6d; }
+  background: #304d6d;
+}
 
-h1 {
-  color: #82a0bc; }
+/* Navbar */
+.navbar-brand {
+  font-size: 2rem;
+}
 
-.initials {
-  color: #a7cced;
-  font-size: 1.5em;
-  font-family: "Leckerli One", cursive; }
+.nav-item {
+  font-size: 1.25rem;
+}
 
-.pop {
-  background: #FFDD59;
-  font-family: monospace; }
-
+section {
+background: white;
+padding: 2%;
+margin: 2%;	
+}
+.block {
+	display: block;
+	vertical-align: top;
+	
+}
+  #calendar {
+	    max-width: 900px;
+	    margin: 0 auto;
+	  }
+	  
 .signin {
   color: #a7cced; }
 
+ .col-5 {
+   text-align: center;
+ }
+  
+ .green {
+ color: green;
+ }
+ 
+ .red {
+ color: red;
+ }
+ 
+ #green, #red {
+ font-size: 1.3rem;
+ }
+ 
 #header {
   border: solid 1px black;
   padding: 40px; }
 
-.widget {
-  border-radius: 100%;
-  border: dashed 4px #333; }
+  ul li {
+  list-style: none;
+}
 
-.dayview {
-  display: none; }
+nav a, nav a:hover, .footer-item a, .footer-item a:hover {
+  text-decoration: none;
+  color: #A7CCED !important;
+}
+
+/* Footer */
+#footer {
+	margin: 2%;
+	padding: 2%;
+}
+.footer-item {
+  font-size: 1.2rem;
+}
+
+.fa {
+  padding: 5px;
+  margin: 5px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  border-radius: 8%;
+  text-decoration: none;
+  border: 1px white solid;
+}
+
+a:hover{
+	text-decoration: none;
+}
+.social {
+  vertical-align: middle;
+}
+
+.social a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.fa-skype {
+  background: #00aff0;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}

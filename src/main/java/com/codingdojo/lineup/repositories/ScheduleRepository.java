@@ -17,5 +17,7 @@ public interface ScheduleRepository extends CrudRepository<Schedule, Long>{
 	List<Schedule> findAllByEmployeeId(Long id);
 	
 	@Query(value="SELECT * FROM schedules WHERE work_date >= ?1 AND work_date < ?2", nativeQuery=true)
-	List<Schedule> findByDate(LocalDate startDate, LocalDate endDate);
+	List<Schedule> findByDate(LocalDate d1, LocalDate d2);
+	
+	
 } 
