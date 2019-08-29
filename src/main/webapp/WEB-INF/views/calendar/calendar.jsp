@@ -154,26 +154,9 @@
   <section class="bottom_info">
     <div class="row">
       <div class="col-5 container mt-2">
-        <h4>Shift Schedule</h4>
-        <h5 class="center"> {schedule.workDate}</h5>
-
-        <div class="form-check center">
-          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-          <label class="form-check-label" for="exampleRadios1">
-            <strong>{schedule.workDate.first_name}</strong> : {schedule.workDate.startHour} - {schedule.workDate.endHour}
-          </label>
-        </div>
-
-        <div class="form-check center">
-          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-          <label class="form-check-label" for="exampleRadios1">
-            <strong>{schedule.workDate.first_name}</strong> : {schedule.workDate.startHour} - {schedule.workDate.endHour}
-          </label>
-        </div>
-        <div class="center">
-          <a href="#" class="btn btn-primary">Submit</a>
-
-        </div>
+        <h4>Request To Swap A Shift?</h4>       
+        <input type="date">
+        <a href="/schedule/swap-request" class="btn btn-outline-primary">Go!</a>
       </div>
     </div>
   </section>
