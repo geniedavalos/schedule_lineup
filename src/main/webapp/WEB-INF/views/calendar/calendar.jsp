@@ -43,11 +43,11 @@
     		]
         
         var calendar = new FullCalendar.Calendar(calendarEl, {
-          plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
+          plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
           header: {
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
           },
           defaultDate: '2019-08-29',
           navLinks: true, // can click day/week names to navigate views
@@ -56,6 +56,48 @@
           selectable:true,
           dateClick: function(info){
 	       dateToSchedule = info.dateStr;
+	       $.ajax({
+       		url:"/schedule/getByDay",
+       		data: {date: dateToSchedule},
+       		method: "POST",
+       		success:function(data){
+       			data = data.replace(/'/g,'"');
+       			data = JSON.parse(data)
+       			let s = ""
+       			s += "<select class='align-center'>"
+       			
+       			for(let i = 0; i < data['people'].length; i++){
+       				let startdate = new Date(data.people[i].start_hour)
+       				let startminutes = "0"
+           				let endminutes = "0"
+
+       				if(startdate.getMinutes() < 10){
+       					startminutes = "0" + startdate.getMinutes();
+       				} else {
+       					startminutes = startdate.getMinutes();
+       				}
+       				let enddate = new Date(data.people[i].end_hour)
+       				if(enddate.getMinutes() < 10){
+       					endminutes = "0" + enddate.getMinutes();
+       				} else {
+       					endminutes = enddate.getMinutes();
+       				} 
+       				s += "<option>";
+       				s += data.people[i].first_name + " ";
+       				s += data.people[i].last_name + " ";
+       				s += dateToSchedule + " ";
+       				s += startdate.getHours() + ":" + startminutes + " - ";
+       				s += enddate.getHours() + ":" + endminutes + " ";
+       				s += "</option>";
+       			}
+       			s += "</select>";
+       			 
+       			$('#swapContainer').html(s)
+       		},
+       		error:function(error){
+       			console.log(error);
+       		}
+       	})  
           },
           events:data
         });
@@ -68,26 +110,6 @@
 
 <body>
 
-	<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div id="testBody"></div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark">
@@ -141,6 +163,10 @@
   </div>
 </div>
 </div>
+
+ <div id="swapContainer">
+ 
+ </div>
  
   <section class="top_info">
     <div class="row">
@@ -186,7 +212,9 @@
         </div>
     <div class="text-center text-white">© Copyright 2019 LineUp </div>
   </div>
-
+	<div id="dummy">
+		<p>First Name Last Name<p>
+	</div>
 
   <!-- <button name="jump" onclick="jump()">Go</button> -->
   <script src="/js/calendar.js"></script>

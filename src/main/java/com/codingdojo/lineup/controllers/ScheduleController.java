@@ -1,7 +1,6 @@
 package com.codingdojo.lineup.controllers;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,9 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codingdojo.lineup.models.Employee;
 import com.codingdojo.lineup.models.Request;
@@ -189,7 +190,39 @@ public class ScheduleController {
 		return "redirect:/schedule/manager";
 	}
 	
-	
+	@PostMapping("/getByDay")
+	public @ResponseBody String getByDay(@RequestParam("date") String date) {
+		LocalDate startDate = LocalDate.parse(date);
+		LocalDate endDate = startDate.plusDays(1);
+		List<Schedule> schedules = scheServ.getByDay(startDate, endDate);
+		String s = "{'people':[";
+		for(int i = 0; i < schedules.size();i++) {
+			Employee e = schedules.get(i).getEmployee();
+			Schedule sch = schedules.get(i);
+			s += "{";
+			s += "'id':";
+			s += "'"+e.getId() + "',";
+			s += "'first_name':";
+			s += "'"+e.getFirstName() + "',";
+			s += "'last_name':";
+			s += "'"+e.getLastName() + "',";
+			s += "'start_hour':";
+			s += "'"+sch.getStartHour() + "',";
+			s += "'end_hour':";
+			s += "'"+sch.getEndHour() + "'";
+			
+			if(i == schedules.size() - 1) {
+				s += "}";
+			} else {	
+				s += "},";
+			}
+			
+		}
+		s += "]}";
+		System.out.println(s);
+		return s;
+		
+	}
 	
 }
 

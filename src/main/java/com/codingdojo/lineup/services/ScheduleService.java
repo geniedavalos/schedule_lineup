@@ -66,6 +66,7 @@ public class ScheduleService {
 		return scheRepo.findByDate(d, d2);
 	}
 	
+	
 	public List<Employee> getManagers(){
 		return empRepo.findManagers();
 	}
