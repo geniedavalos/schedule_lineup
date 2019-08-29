@@ -48,7 +48,7 @@
           header: {
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+            right: 'dayGridMonth,timeGridWeek'
           },
           navLinks: true, // can click day/week names to navigate views
           businessHours: true, // display business hours
@@ -119,6 +119,7 @@
     </div>
   </nav>
   <!-- NAVBAR ENDS -->
+  <div class="container">
   <section class="top_info">
     <div class="row">
       <div class="container mt-2 col-10">
@@ -127,21 +128,36 @@
     </div>
   </section>
 
+
   <section class="bottom_info white">
-    <div class="container">
+    <div class="container table-responsive">
       <h3>Pending Request</h3>
       <div class="pending_items">
-        <ul class="center">
-        	<c:forEach var="req" items="${requests}">
+      <table class="table text-center">
+			<thead>
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Requested Dates</th>
+					<th scope="col">Action</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="req" items="${requests}">
         	<c:if test="${req.approved == null}">
-	        	 <li>
-			    <strong><c:out value="${req.sender.firstName} ${req.sender.lastName}"/></strong> - <strong>FROM</strong>  <fmt:formatDate pattern="E, MM/dd/yyyy" value="${req.start}"/> <strong>TO</strong> <fmt:formatDate pattern="E, MM/dd/yyyy" value="${req.end}"/><a href="/schedule/request/${req.id}/accepted" class="green"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></a>
-			    <a href="/schedule/request/${req.id}/denied" class="red"><i class="fa fa-calendar-times-o" aria-hidden="true"></i></a>
-	       	</li>
+				<tr>
+					<td><c:out value="${req.sender.firstName} ${req.sender.lastName}"/></td>
+					<td><fmt:formatDate pattern="MM/dd/yy" value="${req.start}"/> - <fmt:formatDate pattern="MM/dd/yy" value="${req.end}"/></td>
+					<td><div class="block"><a href="/schedule/request/${req.id}/accepted" class="green">
+					<i class="fa fa-calendar-check-o" id="green" aria-hidden="true"></i> 
+					<a href="/schedule/request/${req.id}/denied" class="red">
+					<i class="fa fa-calendar-times-o" id="red" aria-hidden="true"></i></a></div>
+					</td>
+				</tr>
         	</c:if>
         	</c:forEach>
-        </ul>
-
+			</tbody>
+		</table>
       </div>
     </div>
   </section>
@@ -169,9 +185,9 @@
   </section> --%>
   
   <section class="viewSchedule white">
-  <div class="container">
+  <div class="container table-responsive">
 	<h3>Schedules</h3>
-		<table class="table table-striped">
+		<table class="table table-striped text-center">
 			<thead>
 				<tr>
 					<th scope="col">Name</th>
@@ -192,7 +208,7 @@
 							<c:when test="${schedule.employee.accessLevel==1}">Employee</c:when>
 						</c:choose>
 					</td>
-					<td><fmt:formatDate pattern="E, MM/dd/yyyy" value = "${schedule.workDate}"/></td>
+					<td><fmt:formatDate pattern="MM/dd/yyyy" value = "${schedule.workDate}"/></td>
 					<td><fmt:formatDate pattern="hh:mm a" value = "${schedule.startHour}"/></td>
 					<td><fmt:formatDate pattern="hh:mm a" value = "${schedule.endHour}"/></td>
 				</tr>
@@ -202,6 +218,7 @@
 		</div>
 		</section>
 		
+		
 	<div id="footer">
 		<div class="row social justify-content-center">
 	          <a href="#" class="fa fa-facebook"></a>
@@ -210,6 +227,7 @@
 	          <a href="#" class="fa fa-skype"></a>
 	       </div>
 	    	<div class="text-center text-white">© Copyright 2019 LineUp </div>
+  	</div>
   	</div>
 
   <script src="/js/calendar.js"></script>
