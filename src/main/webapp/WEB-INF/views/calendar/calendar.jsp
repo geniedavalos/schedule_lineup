@@ -181,19 +181,37 @@
   <section class="bottom_info">
     <div class="row">
       <div class="col-5 container mt-2">
-        <h4>Request To Swap A Shift?</h4>
-        <input type="date">
-        <a href="/schedule/swap-request" class="btn btn-outline-primary">Go!</a>
+        <h2>Day Off Requests</h2>
+        <table class="table table-striped table-bordered">
+        	<tr>
+	        	<thead>
+	        		<th>Original Request Sent</th>
+	        		<th>Status?</th>
+	        	</thead>
+        	</tr>
+        	<tr>
+        		<td>Nemo Fish	08/23/2019	06:00 PM	04:00 PM</td>
+        		<td>Approved</td>	
+        	</tr>
+        	<tr>
+        		<td>Nemo Fish	08/25/2019	08:00 AM	05:00 PM</td>
+        		<td>Pending</td>	
+        	</tr>
+        	<tr>
+        		<td>Nemo Fish	08/30/2019	08:00 AM	05:00 PM</td>
+        		<td>Denied</td>	
+        	</tr>
+        </table>
       </div>
     </div>
   </section>
 
      <div id="footer">
         <div class="row social justify-content-center">
-          <a href="#" class="fa fa-facebook"></a>
-          <a href="#" class="fa fa-twitter"></a>
-          <a href="#" class="fa fa-youtube"></a>
-          <a href="#" class="fa fa-skype"></a>
+          <a href="https://www.facebook.com" class="fa fa-facebook" target="_blank"></a>
+          <a href="https://www.twitter.com" class="fa fa-twitter" target="_blank"></a>
+          <a href="https://www.youtube.com" class="fa fa-youtube" target="_blank"></a>
+          <a href="https://www.skype.com" class="fa fa-skype"target="_blank"></a>
         </div>
     <div class="text-center text-white">© Copyright 2019 LineUp </div>
   </div>

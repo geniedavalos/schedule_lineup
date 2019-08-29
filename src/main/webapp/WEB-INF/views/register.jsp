@@ -114,10 +114,10 @@
     
     <div id="footer">
         <div class="row social justify-content-center">
-          <a href="#" class="fa fa-facebook"></a>
-          <a href="#" class="fa fa-twitter"></a>
-          <a href="#" class="fa fa-youtube"></a>
-          <a href="#" class="fa fa-skype"></a>
+          <a href="https://www.facebook.com" class="fa fa-facebook" target="_blank"></a>
+          <a href="https://www.twitter.com" class="fa fa-twitter" target="_blank"></a>
+          <a href="https://www.youtube.com" class="fa fa-youtube" target="_blank"></a>
+          <a href="https://www.skype.com" class="fa fa-skype"target="_blank"></a>
         </div>
     <div class="text-center text-white">© Copyright 2019 LineUp </div>
   </div>

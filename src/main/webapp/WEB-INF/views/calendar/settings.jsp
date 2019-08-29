@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
  <link rel="stylesheet" type="text/css" href="/css/app.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -33,8 +34,8 @@
   </nav>
 
 <div class="container">
-  <section class="white">
-	<div id="addStaffMember" class="container">
+  <section class="white" id="addStaffMember">
+	<div class="container">
 	<h3>Add Staff</h3>
 		<form:form action="/schedule/addStaff" method="POST" modelAttribute="employee">
 		  <div class="form-group">
@@ -60,7 +61,7 @@
 
   <section class="white">
 		<div id="editAccess" class="container table-responsive">
-		<h3>Edit Access</h3>
+		<h3>Edit Access <button class="btn btn-outline-primary float-right" id="addStaff">Add Staff</button></h3>
 		<table class="table table-striped text-center">
 		<thead>
 			<tr>
@@ -106,18 +107,18 @@
 
    <div id="footer">
         <div class="row social justify-content-center">
-          <a href="#" class="fa fa-facebook"></a>
-          <a href="#" class="fa fa-twitter"></a>
-          <a href="#" class="fa fa-youtube"></a>
-          <a href="#" class="fa fa-skype"></a>
+          <a href="https://www.facebook.com" class="fa fa-facebook" target="_blank"></a>
+          <a href="https://www.twitter.com" class="fa fa-twitter" target="_blank"></a>
+          <a href="https://www.youtube.com" class="fa fa-youtube" target="_blank"></a>
+          <a href="https://www.skype.com" class="fa fa-skype"target="_blank"></a>
         </div>
     <div class="text-center text-white">© Copyright 2019 LineUp </div>
   </div>
  </div>
-  
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  
+ <script src="/js/app.js"></script>
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
 </body>
 </html>

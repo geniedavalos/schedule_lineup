@@ -8,4 +8,11 @@ $(document).ready(function () {
         $('form.register').hide();
         $('form.login').show();
     })
+    
+//    jQuery for hiding add staff section
+    $("section#addStaffMember").hide();
+    $("button#addStaff").on("click", function(){
+    	$("section#addStaffMember").show();
+    })
+    
 });
