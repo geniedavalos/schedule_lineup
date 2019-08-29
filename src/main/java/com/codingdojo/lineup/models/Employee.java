@@ -36,7 +36,7 @@ public class Employee {
 	@Email(message="Please enter a valid email")
 	private String email;
 	
-	@Size(min = 8)
+	@Size(min = 8, message="Password must be at least 8 characters.")
 	private String password;
 	
 	@Transient

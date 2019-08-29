@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
@@ -33,7 +34,7 @@
             <h2 class="login d-lg-none text-center text-warning">login</h2>
             <form class="login d-lg-none align-top" action="/login" method="post">
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">Email </label>
                     <input type="text" name="email" class="form-control shadow">
                 </div>
                 <div class="form-group">
@@ -70,27 +71,27 @@
             </form:form>
         </div>
         <!--mini_content ENDS -->
-    
+   
         <form:form class="d-none d-lg-inline-block col-7" action='/register' method="POST" modelAttribute="employee">
             <h2 class="text-warning">register</h2>
             <div class="form-group">
-                <form:label path="firstName">First Name</form:label>
+                <form:label path="firstName">First Name <br><form:errors path="firstName" class="text-danger"/></form:label>
                 <form:input type="text" path="firstName" class="form-control col-10 shadow"/>
             </div>
             <div class="form-group">
-                <form:label path="lastName">Last Name</form:label>
+                <form:label path="lastName">Last Name <br><form:errors path="lastName" class="text-danger"/></form:label>
                 <form:input type="text" path="lastName" class="form-control col-10 shadow"/>
             </div>
             <div class="form-group">
-                <form:label path="email">Email</form:label>
+                <form:label path="email">Email <br><form:errors path="email" class="text-danger"/></form:label>
                 <form:input type="text" path="email" class="form-control col-10 shadow"/>
             </div>
             <div class="form-group">
-                <form:label path="password">Password</form:label>
+                <form:label path="password">Password <br><form:errors path="password" class="text-danger"/></form:label>
                 <form:input type="password" path="password" class="form-control col-10 shadow"/>
             </div>
             <div class="form-group">
-                <form:label path="passwordConfirmation">Confirm Password</form:label>
+                <form:label path="passwordConfirmation">Confirm Password <br><form:errors path="passwordConfirmation" class="text-danger"/></form:label>
                 <form:input type="password" path="passwordConfirmation" class="form-control col-10 shadow"/>
             </div>
             <input type="submit" value="Register" class="btn btn-outline-info shadow font-weight-bold">
@@ -98,8 +99,9 @@
     
         <form class="d-none d-lg-inline-block align-top col-4" action="/login" method="post">
             <h2 class="text-warning">login</h2>
+            <p class="text-danger m-0"><c:out value="${error}"/></p>
             <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email">Email </label>
                 <input type="text" name="email" class="form-control shadow">
             </div>
             <div class="form-group">

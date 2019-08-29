@@ -49,10 +49,11 @@ public class AuthController {
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
+	public String loginUser(@ModelAttribute("employee")Employee e, @RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
 		if(empServ.authenticateEmployee(email, password) == false ) {
 			model.addAttribute("error", "Invalid Credentials, please try again!");
-			return "redirect:/";
+			model.addAttribute("employee", e);
+			return "register.jsp";
 		} else{
 			Employee emp = empServ.findByEmail(email);
 			session.setAttribute("emp_id", emp.getId());
