@@ -16,7 +16,7 @@
   <body data-spy="scroll" data-target="#main-nav" id="home">
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="main-nav">
    
-      <a href="/" class="navbar-brand">LineUp</a>
+     <a href="/lineup" class="navbar-brand">LineUp</a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
     aria-label="Toggle navigation">
