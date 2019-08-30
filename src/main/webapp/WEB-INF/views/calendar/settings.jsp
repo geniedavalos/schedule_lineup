@@ -61,7 +61,7 @@
 
   <section class="white">
 		<div id="editAccess" class="container table-responsive">
-		<h3>Edit Access <button class="btn btn-outline-primary float-right" id="addStaff">Add Staff</button></h3>
+		<h3>Edit Access <button class="btn btn-outline-primary float-right mb-2" id="addStaff">Add Staff</button></h3>
 		<table class="table table-striped text-center">
 		<thead>
 			<tr>
@@ -84,12 +84,13 @@
 				</c:choose>
 				</td>
 					<td>
-						<form action="/schedule/${emp.id}/changeAccess" method="POST">
-							<select name="accessLvl">
+						<form action="/schedule/${emp.id}/changeAccess" method="POST" class="form-inline">
+							<select name="accessLvl" class="custom-select col-8">
 								<option value="1" label="Employee"/>
 								<option value="9" label="Manager"/>
 							</select>
-							<button type="submit" class="btn btn-success">Update</button>
+							
+							<button type="submit" class="btn btn-success col-3 ml-2">Update</button>
 						</form>
 					</td>
 					<td>

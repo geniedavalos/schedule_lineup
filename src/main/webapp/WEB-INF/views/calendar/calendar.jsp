@@ -122,7 +122,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
        <li class="nav-item active">
-          <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#dayOffRequest">
+          <button type="button" class="btn btn-primary nav-link shadow"  data-toggle="modal" data-target="#dayOffRequest">
  Day Off Request
 </button>
         </li>
@@ -191,7 +191,7 @@
         	</tr>
         	<tr>
         		<td>Nemo Fish	08/23/2019	06:00 PM	04:00 PM</td>
-        		<td>Approved</td>	
+        		<td class="text-success">Approved</td>	
         	</tr>
         	<tr>
         		<td>Nemo Fish	08/25/2019	08:00 AM	05:00 PM</td>
@@ -199,7 +199,7 @@
         	</tr>
         	<tr>
         		<td>Nemo Fish	08/30/2019	08:00 AM	05:00 PM</td>
-        		<td>Denied</td>	
+        		<td class="text-danger">Denied</td>	
         	</tr>
         </table>
       </div>

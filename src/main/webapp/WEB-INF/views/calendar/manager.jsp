@@ -83,17 +83,17 @@
       </div>
       <div class="modal-body">
         <form:form action="/schedule/addSchedule" method="post" modelAttribute="schedule">
-        	<form:select path="employee">
+        	<form:select path="employee" class="custom-select mb-3">
 				<c:forEach items="${allEmployees}" var="emp">
 					<form:option value="${emp.id}" label="${emp.firstName} ${emp.lastName}"/>
 				</c:forEach>
 			</form:select>
 			<div id="dateInput"></div>
 			<form:label path="startHour">Start time</form:label>
-			<form:input type="time" path="startHour"/>
+			<form:input type="time" path="startHour" class="form-control"/>
 			<form:label path="endHour">End time</form:label>
-			<form:input type="time" path="endHour"/>
-			<button type="submit" class="btn btn-success">Submit</button>
+			<form:input type="time" path="endHour" class="form-control"/>
+			<button type="submit" class="btn btn-success mt-2 shadow">Submit</button>
         </form:form>
       </div>
     </div>
