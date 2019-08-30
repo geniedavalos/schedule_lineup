@@ -31,12 +31,16 @@ public class ScheduleController {
 	}
 	
 	@RequestMapping("")
-	public String dashboard(@ModelAttribute("schedule") Schedule s, @ModelAttribute("request")Request req, Model model) {
+	public String dashboard(@ModelAttribute("schedule") Schedule s, @ModelAttribute("request")Request req, Model model, HttpSession session) {
+		if(session.getAttribute("emp_id") == null) {
+			return "redirect:/";
+		} else {
 		model.addAttribute("schedule", s);
 		model.addAttribute("request",req);
 		List<Schedule> schedules = scheServ.getSchedules();
 		model.addAttribute("schedules", schedules);
 		return "/calendar/calendar.jsp";
+		}
 	}
 	@RequestMapping("/swap-request")
 	public String swap(@ModelAttribute("schedule") Schedule s, Model model, HttpSession session) {
