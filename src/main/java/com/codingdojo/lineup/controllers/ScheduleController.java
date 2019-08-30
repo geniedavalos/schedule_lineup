@@ -67,22 +67,6 @@ public class ScheduleController {
 		}
 	}
 	
-	@RequestMapping("/home")
-	public String redirect(HttpSession session) {
-		Long id = (Long) session.getAttribute("emp_id");
-		if(id==null) {
-			return "/register.jsp";
-		} else {
-			Employee em = scheServ.getEmp(id);
-			if(em.getAccessLevel() != 9) {
-				return "redirect:/schedule";
-			} else {
-				return "redirect:/schedule/manager";
-			}
-		}
-	}
-	
-	
 	@RequestMapping(value="/addSchedule", method=RequestMethod.POST)
 	public String addSchedule(@ModelAttribute("schedule")Schedule s, BindingResult result) {
 		if(result.hasErrors()) {
