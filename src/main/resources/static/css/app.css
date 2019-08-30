@@ -3,13 +3,65 @@ body {
   background: #304d6d;
 }
 
+#home-section {
+  background: url(../img/curtis-macnewton-vVIwtmqsIuk-unsplash.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 500px;
+}
+
+#home-section .dark-overlay {
+  position: absolute;
+  color: white;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 500px;
+  background: rgba(0,0,0,0.7);
+}
+
+#home-section .home-inner {
+  padding-top: 150px;
+}
+
 /* Navbar */
 .navbar-brand {
-  font-size: 2rem;
+  font-size: 2.5rem;
+  color: white;
 }
 
 .nav-item {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
+}
+
+nav {
+ background: #304d6d;
+ color: white;
+ border-bottom: #008ed6 3px solid;
+}
+
+.emphasis {
+	color: #008ed6;
+}
+
+.card-header {
+	background: #008ed6;
+	color: white;
+}
+
+.white {
+	background: white;
+	color: #304d6d;
+}
+
+.blue {
+	background: #304d6d;
+	color: white;
+}
+
+.main-description {
+	font-size: 1.25rem;
 }
 
 section {
@@ -22,10 +74,15 @@ margin: 2%;
 	vertical-align: top;
 	
 }
-  #calendar {
-	    max-width: 900px;
-	    margin: 0 auto;
-	  }
+
+.img-fluid {
+	border-radius: 8px;
+}
+
+#calendar {
+    max-width: 900px;
+    margin: 0 auto;
+  }
 	  
 .signin {
   color: #a7cced; }
@@ -59,11 +116,21 @@ nav a, nav a:hover, .footer-item a, .footer-item a:hover {
   color: #A7CCED !important;
 }
 
+
+.plans-column {
+	color: black;
+}
+
 /* Footer */
 #footer {
 	margin: 2%;
 	padding: 2%;
 }
+
+#footer div {
+	margin: 2%;
+}
+
 .footer-item {
   font-size: 1.2rem;
 }
