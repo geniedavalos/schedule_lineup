@@ -30,6 +30,11 @@ public class AuthController {
 		
 	}
 	
+	@RequestMapping("/lineup")
+	public String landing() {
+		return "landing.jsp";
+	}
+	
 	@RequestMapping("")
 	public String index(@ModelAttribute("employee") Employee e, Model model) {
 		model.addAttribute("employee", e);
