@@ -65,8 +65,7 @@
 		<table class="table table-striped text-center">
 		<thead>
 			<tr>
-				<th scope="col">First Name</th>
-				<th scope="col">Last Name</th>
+				<th scope="col">Name</th>
 				<th scope="col">Position</th>
 				<th scope="col">Access Level</th>
 				<th scope="col">Action</th>
@@ -75,8 +74,7 @@
 		<tbody>
 			<c:forEach items="${allEmployees}" var="emp">
 				<tr>
-					<td><c:out value="${emp.firstName} "/></td>
-					<td><c:out value="${emp.lastName} "/></td>
+					<td><c:out value="${emp.firstName} ${emp.lastName}"/></td>
 					<td>
 				<c:choose>
 					<c:when test="${emp.accessLevel==9}">Manager</c:when>
@@ -85,12 +83,12 @@
 				</td>
 					<td>
 						<form action="/schedule/${emp.id}/changeAccess" method="POST" class="form-inline">
-							<select name="accessLvl" class="custom-select col-8">
+							<select name="accessLvl" class="custom-select col-lg-5">
 								<option value="1" label="Employee"/>
 								<option value="9" label="Manager"/>
 							</select>
 							
-							<button type="submit" class="btn btn-success col-3 ml-2">Update</button>
+							<button type="submit" class="btn btn-success col-lg-5 ml-2">Update</button>
 						</form>
 					</td>
 					<td>
