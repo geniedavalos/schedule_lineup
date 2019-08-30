@@ -120,7 +120,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
        <li class="nav-item active">
-          <a type="button" class="btn-link nav-link shadow"  data-toggle="modal" data-target="#dayOffRequest" href="">Time Off Request</a>
+          <a class="nav-link" data-toggle="modal" data-target="#dayOffRequest" href="">Time Off Request</a>
         </li>
 
         <li class="nav-item active">
