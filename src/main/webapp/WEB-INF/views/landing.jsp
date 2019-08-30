@@ -46,7 +46,7 @@
             <div class="d-flex">
               <div class="p-3">
               <h3 class="col-lg-10">
-               	Simplify employee management with our interactive and easy to use calendar scheduling system with features like Click-to-Schedule, Day-Off-Request, and Auto-fill Calendar will streamline business efficiency.
+               	Simplify employee management with LineUp, an interactive and easy to use calendar scheduling system.
                 </h3>
               </div>
             </div>
@@ -59,11 +59,12 @@
   <section id="explore" class="blue">
     <div class="container">
         <div class="text-center py-5">
-          <h1 class="display-4 my-3">Explore</h1>
+          <h1 class="display-4 my-4">Explore</h1>
           <h3>
-          	Request a demo of our <span class="emphasis">interactive calendar</span> with Drag-and-Drop features!
+          	Request a demo of <span class="emphasis">LineUp</span>, our interactive calendar including</h3>
+          	<h3><span class="highlight">Click-to-Schedule</span>, <span class="highlight">Time-Off-Request</span>, and <span class="highlight">Autofill Calendar</span>!
           </h3>
-          <a href="/" class="btn btn-outline-light btn-lg">Find Out More</a>
+          <a href="/" class="btn btn-outline-light btn-lg my-3">Find Out More</a>
         </div>
       </div>
   </section>
@@ -76,16 +77,16 @@
           <img src="/img/alejandro-escamilla-Dl6jeyfihLk-unsplash.jpg" alt="" class="img-fluid my-3">
         </div>
         <div class="col-md-6 my-3">
-          <h2>Communicate & Connect</h2>
+          <h2>Get Connected</h2>
            <p class="main-description">
-            LineUp promotes open channel communication between management and employees by utilizing / something platform.
+            LineUp promotes open channel communication between management and employees:
           </p>
           <div class="d-flex">
             <div class="p-3 align-self-start">
               <i class="fa fa-check-square-o emphasis" aria-hidden="true"></i>
             </div>
             <div class="p-3 align-self-end">
-              Employee request off form with management approval
+              <p class="main-description">Painless Time Off Requests</p>
             </div>
           </div>
 
@@ -94,7 +95,7 @@
               <i class="fa fa-check-square-o emphasis" aria-hidden="true"></i>
             </div>
             <div class="p-3 align-self-end">
-             Employee schedule management tool with easy access
+            <p class="main-description">Real Time Updates </p>
             </div>
           </div>
         </div>
@@ -107,7 +108,7 @@
   <!-- PRICING HEAD -->
   <section id="pricing" class="blue">
     <div class="container text-center">
-          <h1 class="display-4 my-3">Pricing Options</h1>
+          <h1 class="display-4 my-4">Pricing Options</h1>
       <div class="row">
         <div class="plans-column col-lg-6 mb-4">
           <div class="card">
@@ -116,9 +117,9 @@
             </div>
             <div class="card-body">
               <h3>Free</h3>
-              <p>Schedule Management</p>
-              <p>Employee Management</p>
-              <p>Technical Support</p>
+              <p class="main-description">Schedule Management</p>
+              <p class="main-description">Employee Management</p>
+             <p class="main-description">Technical Support</p>
               <a href="/" class="btn btn-primary btn-block btn-lg">Sign Up</a>
             </div>
           </div>
@@ -131,9 +132,9 @@
             </div>
             <div class="card-body">
               <h3>$999/month</h3>
-             <p>Enhanced Schedule Management</p>
-              <p>Employee Management</p>
-              <p>Technical Support</p>
+             <p class="main-description">Enhanced Schedule Management</p>
+              <p class="main-description">Employee Management</p>
+              <p class="main-description">Technical Support</p>
               
               <a href="/" class="btn btn-primary btn-block btn-lg">Sign Up</a>
             </div>
@@ -158,11 +159,11 @@
          <div class="contactus text-center row">
          <div class="col-6">
          <h4><span><i class="fa fa-phone emphasis" aria-hidden="true"></i></span></h4> 
-         <p>888-888-8888</p>
+         <p class="main-description">888-888-8888</p>
          </div>
           <div class="col-6">
            <h4><span><i class="fa fa-envelope emphasis" aria-hidden="true"></i></span></h4> 
-         <p>support@lineup.com</p>
+         <p class="main-description">support@lineup.com</p>
          </div>
          </div>
       </div>
