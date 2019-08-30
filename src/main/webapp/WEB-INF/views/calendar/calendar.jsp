@@ -28,8 +28,6 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
   <script>
-
-
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var dateToSchedule;
@@ -122,9 +120,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
        <li class="nav-item active">
-          <button type="button" class="btn btn-primary nav-link shadow"  data-toggle="modal" data-target="#dayOffRequest">
- Day Off Request
-</button>
+          <a type="button" class="btn-link nav-link shadow"  data-toggle="modal" data-target="#dayOffRequest" href="">Time Off Request</a>
         </li>
 
         <li class="nav-item active">
@@ -181,26 +177,46 @@
   <section class="bottom_info">
     <div class="row">
       <div class="col-5 container mt-2">
-        <h2>Day Off Requests</h2>
+        <h2>Time Off Requests</h2>
         <table class="table table-striped table-bordered">
         	<tr>
 	        	<thead>
-	        		<th>Original Request Sent</th>
-	        		<th>Status?</th>
+	        		<th>From</th>
+	        		<th>To</th>
+	        		<th>Status</th>
 	        	</thead>
         	</tr>
         	<tr>
-        		<td>Nemo Fish	08/23/2019	06:00 PM	04:00 PM</td>
+        		<td>
+        		08/23/2019 06:00 PM	
+        		</td>
+        		<td>
+        			08/24/2019 04:00 PM
+        		</td>
         		<td class="text-success">Approved</td>	
         	</tr>
+        	
+        	
         	<tr>
-        		<td>Nemo Fish	08/25/2019	08:00 AM	05:00 PM</td>
-        		<td>Pending</td>	
+        		<td>
+        		08/23/2019 06:00 PM	
+        		</td>
+        		<td>
+        			08/24/2019 04:00 PM
+        		</td>
+        		<td>Pending</td>
         	</tr>
+        	
         	<tr>
-        		<td>Nemo Fish	08/30/2019	08:00 AM	05:00 PM</td>
-        		<td class="text-danger">Denied</td>	
+        		<td>
+        		08/23/2019 06:00 PM	
+        		</td>
+        		<td>
+        			08/24/2019 04:00 PM
+        		</td>
+        	<td class="text-danger">Denied</td>	
         	</tr>
+        
         </table>
       </div>
     </div>
@@ -223,10 +239,7 @@
   <!-- Optional JavaScript for bootstrap -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-  <script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
