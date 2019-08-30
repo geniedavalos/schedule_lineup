@@ -93,7 +93,9 @@
 			<form:input type="time" path="startHour" class="form-control"/>
 			<form:label path="endHour">End time</form:label>
 			<form:input type="time" path="endHour" class="form-control"/>
-			<button type="submit" class="btn btn-success mt-2 shadow">Submit</button>
+			<div class="text-center mx-3 my-3">
+        	<button type="submit" class="btn btn-primary">Submit</button>
+        	 </div>
         </form:form>
       </div>
     </div>
