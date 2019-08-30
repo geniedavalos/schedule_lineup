@@ -61,7 +61,7 @@
         <div class="text-center py-5">
           <h1 class="display-4 my-4">Explore</h1>
           <h3>
-          	Request a demo of <span class="emphasis">LineUp</span>, our interactive calendar including</h3>
+          	Request a demo of LineUp, our interactive calendar including</h3>
           	<h3><span class="highlight">Click-to-Schedule</span>, <span class="highlight">Time-Off-Request</span>, and <span class="highlight">Autofill Calendar</span>!
           </h3>
           <a href="/" class="btn btn-outline-light btn-lg my-3">Find Out More</a>
@@ -158,11 +158,11 @@
          
          <div class="contactus text-center row">
          <div class="col-6">
-         <h4><span><i class="fa fa-phone emphasis" aria-hidden="true"></i></span></h4> 
+         <h4><a href="#"><i class="fa fa-phone emphasis" aria-hidden="true"></i></a></h4> 
          <p class="main-description">888-888-8888</p>
          </div>
           <div class="col-6">
-           <h4><span><i class="fa fa-envelope emphasis" aria-hidden="true"></i></span></h4> 
+           <h4><a href="#"><i class="fa fa-envelope emphasis" aria-hidden="true"></i></a></h4> 
          <p class="main-description">support@lineup.com</p>
          </div>
          </div>
