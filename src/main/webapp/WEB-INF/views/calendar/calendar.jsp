@@ -189,8 +189,8 @@
         	<tbody>
 	        	<c:forEach items="${requests}" var="req">	
 	        		<tr>
-	        			<td><fmt:formatDate pattern="E, MM/dd/yy" value="${req.start}"/></td>
-	        			<td><fmt:formatDate pattern="E, MM/dd/yy" value="${req.end}"/></td>
+	        			<td><fmt:formatDate pattern="MM/dd/yy (E)" value="${req.start}"/></td>
+	        			<td><fmt:formatDate pattern="MM/dd/yy (E)" value="${req.end}"/></td>
 	        			<td>
 	        				<c:choose>
 	        					<c:when test="${req.approved == true }"><p class="text-success">Approved</p></c:when>
