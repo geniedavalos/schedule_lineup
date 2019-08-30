@@ -35,6 +35,8 @@ public class ScheduleController {
 		if(session.getAttribute("emp_id") == null) {
 			return "redirect:/";
 		} else {
+		Long id = (Long) session.getAttribute("emp_id");
+		model.addAttribute("requests", scheServ.findRequestsByEmpId(id));
 		model.addAttribute("schedule", s);
 		model.addAttribute("request",req);
 		List<Schedule> schedules = scheServ.getSchedules();

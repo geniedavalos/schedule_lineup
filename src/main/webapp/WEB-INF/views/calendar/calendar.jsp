@@ -179,44 +179,28 @@
       <div class="col-5 container mt-2">
         <h2>Time Off Requests</h2>
         <table class="table table-striped table-bordered">
+        	<thead>
         	<tr>
-	        	<thead>
-	        		<th>From</th>
-	        		<th>To</th>
-	        		<th>Status</th>
-	        	</thead>
+	        	<th>From</th>
+	        	<th>To</th>
+	        	<th>Status</th>
         	</tr>
-        	<tr>
-        		<td>
-        		08/23/2019 06:00 PM	
-        		</td>
-        		<td>
-        			08/24/2019 04:00 PM
-        		</td>
-        		<td class="text-success">Approved</td>	
-        	</tr>
-        	
-        	
-        	<tr>
-        		<td>
-        		08/23/2019 06:00 PM	
-        		</td>
-        		<td>
-        			08/24/2019 04:00 PM
-        		</td>
-        		<td>Pending</td>
-        	</tr>
-        	
-        	<tr>
-        		<td>
-        		08/23/2019 06:00 PM	
-        		</td>
-        		<td>
-        			08/24/2019 04:00 PM
-        		</td>
-        	<td class="text-danger">Denied</td>	
-        	</tr>
-        
+        	</thead>
+        	<tbody>
+	        	<c:forEach items="${requests}" var="req">	
+	        		<tr>
+	        			<td><fmt:formatDate pattern="E, MM/dd/yy" value="${req.start}"/></td>
+	        			<td><fmt:formatDate pattern="E, MM/dd/yy" value="${req.end}"/></td>
+	        			<td>
+	        				<c:choose>
+	        					<c:when test="${req.approved == true }"><p class="text-success">Approved</p></c:when>
+	        					<c:when test="${req.approved == false }"><p class="text-danger">Denied</p></c:when>
+	        					<c:when test="${req.approved == null }"><p class="text-warning">Pending</p></c:when>
+	        				</c:choose>
+	        			</td>
+	        		<tr>
+	        	</c:forEach>
+        	</tbody>
         </table>
       </div>
     </div>

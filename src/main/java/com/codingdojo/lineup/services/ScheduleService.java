@@ -82,5 +82,9 @@ public class ScheduleService {
 	public Request getRequest(Long id) {
 		return reqRepo.findById(id).get();
 	}
+	
+	public List<Request> findRequestsByEmpId(Long id) {
+		return reqRepo.findRequestByEmpId(id);
+	}
 
 }
