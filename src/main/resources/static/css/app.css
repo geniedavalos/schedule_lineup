@@ -28,7 +28,6 @@ body {
 /* Navbar */
 .navbar-brand {
   font-size: 2.5rem;
-  color: white;
 }
 
 .nav-item {
@@ -113,7 +112,7 @@ margin: 2%;
 
 nav a, nav a:hover, .footer-item a, .footer-item a:hover {
   text-decoration: none;
-  color: #A7CCED !important;
+  color: white !important;
 }
 
 
