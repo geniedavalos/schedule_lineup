@@ -2,7 +2,7 @@
 ![Platform](https://img.shields.io/badge/Java/Spring-green)
 
 ## Description
-A scheduling / employee management website with interactive calendar (fullcalendar.io).
+A scheduling / employee management website with an interactive calendar (fullcalendar.io).
 ![Landing](/lineup_pics/1.png)
 ![Dashboard](/lineup_pics/2-1.png)
 ![Manager](/lineup_pics/2.png)
