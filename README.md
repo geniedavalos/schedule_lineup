@@ -10,7 +10,7 @@ A scheduling / employee management website with an interactive calendar (fullcal
 ![Settings](/lineup_pics/4.png)
 
 ## Get Started
-LineUp works with Java.
+Go to http://lineup.geniedavalos.com.
 
 ## Roadmap
 * Interactive Calendar - more features.
